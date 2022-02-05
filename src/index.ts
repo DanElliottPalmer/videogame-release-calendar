@@ -117,7 +117,8 @@ class GamesRadarFetcher extends PageFetcher {
 
   private processDate(dateString: string): Date | undefined {
     const thisYear = new Date().getFullYear();
-    const dateValue = Date.parse(`${dateString} ${thisYear}`);
+    // TODO: regions? tmz?
+    const dateValue = Date.parse(`${dateString} ${thisYear} 00:00:00 UTC`);
     const date = new Date(dateValue);
     if (isNaN(date.valueOf())) return undefined;
     return date;
