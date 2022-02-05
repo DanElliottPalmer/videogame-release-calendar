@@ -7,7 +7,7 @@ export abstract class PageFetcher {
   protected body: string;
   protected url: string;
 
-  public abstract extract(manager: PlatformManager): void;
+  public abstract extract(manager: PlatformManager): Array<VideoGame>;
 
   public async request(): Promise<string> {
     const response = await fetch(this.url);
