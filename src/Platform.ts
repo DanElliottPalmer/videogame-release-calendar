@@ -16,4 +16,8 @@ export class Platform {
       this.knownAs.add(names);
     }
   }
+
+  toString(): string {
+    return this.name;
+  }
 }

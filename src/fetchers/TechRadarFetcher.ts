@@ -81,8 +81,9 @@ export class TechRadarFetcher extends PageFetcher {
         const releaseDate = this.processDate(gameReleaseDate as string);
         if (gameName && platforms.length > 0 && releaseDate) {
           const videoGame = new VideoGame(gameName);
-          videoGame.addPlatform(platforms);
-          videoGame.addReleaseDate(releaseDate);
+          platforms.forEach((platform) => {
+            videoGame.addReleaseDate(platform, releaseDate);
+          });
           this.games.push(videoGame);
         }
       });
