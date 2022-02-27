@@ -44,29 +44,6 @@ manager.add([
   oculusQuest,
 ]);
 
-type Bigrams = Set<string>;
-
-function getBigrams(str: string): Bigrams {
-  const bigrams: Bigrams = new Set();
-  for (let i = 0; i < str.length - 1; i++) {
-    bigrams.add(str.substring(i, i + 2));
-  }
-  return bigrams;
-}
-
-function intersect(set1: Bigrams, set2: Bigrams): Bigrams {
-  return new Set([...set1].filter((x) => set2.has(x)));
-}
-
-// Sørensen–Dice coefficient
-function diceCoefficient(str1: string, str2: string): number {
-  const bigrams1 = getBigrams(str1);
-  const bigrams2 = getBigrams(str2);
-  return (
-    (2 * intersect(bigrams1, bigrams2).size) / (bigrams1.size + bigrams2.size)
-  );
-}
-
 async function init() {
   let allGames: Array<VideoGame> = [];
   const fetchers: Array<PageFetcher> = [
@@ -81,33 +58,32 @@ async function init() {
     allGames = allGames.concat(fetcher.extract(manager));
   }
 
-  const uniqueGames = [];
-  const mergedList: Set<number> = new Set();
-  const threshold = 0.85;
-  for (let i = 0; i < allGames.length; i++) {
-    if (mergedList.has(allGames[i].id)) continue;
-    for (let j = i + 1; j < allGames.length; j++) {
-      if (i === j) continue;
-      if (mergedList.has(allGames[j].id)) continue;
-      const cleanName1 = allGames[i].name
-        .toLowerCase()
-        .replace(/[^\w\d\s]+/gi, '');
-      const cleanName2 = allGames[j].name
-        .toLowerCase()
-        .replace(/[^\w\d\s]+/gi, '');
-      const value = diceCoefficient(cleanName1, cleanName2);
-      if (value > threshold) {
-        // console.log(allGames[i].name, ',', allGames[j].name, value);
-        allGames[i].merge(allGames[j]);
-        mergedList.add(allGames[j].id);
+  const mergedGames: Set<number> = new Set();
+  const similarThreshold = 0.85;
+  const gameLength = allGames.length;
+  let gameScore: number;
+  for (let i = 0; i < gameLength; i++) {
+    const gameA = allGames[i] as VideoGame;
+
+    for (let j = i + 1; j < gameLength; j++) {
+      const gameB = allGames[j] as VideoGame;
+      // Already merged this game, so we can skip
+      if (mergedGames.has(gameB.id)) continue;
+
+      gameScore = gameA.compareName(gameB);
+      if (gameScore >= similarThreshold) {
+        // console.log(game.name, ',', similarGame.name, score);
+        gameA.merge(gameB);
+        mergedGames.add(gameB.id);
       }
     }
-    uniqueGames.push(allGames[i]);
   }
+
+  const uniqueGames: Array<VideoGame> = allGames.filter((game) => {
+    return !mergedGames.has(game.id);
+  });
 
   console.log(uniqueGames.map((game) => game.toJSON()));
 }
 
 init();
-
-// console.log(diceCoefficient('Elex 2', 'Elex II'));
