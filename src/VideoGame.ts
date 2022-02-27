@@ -35,14 +35,17 @@ export class VideoGame {
 
   merge(videoGame: VideoGame) {
     // Add to knownAs
-    if (this.knownAs.has(videoGame.name)) {
-      this.knownAs.set(
-        videoGame.name,
-        (this.knownAs.get(videoGame.name) as number) + 1,
-      );
-    } else {
-      this.knownAs.set(videoGame.name, 1);
+    for (const [knownAsName, knownAsValue] of videoGame.knownAs) {
+      if (this.knownAs.has(knownAsName)) {
+        this.knownAs.set(
+          knownAsName,
+          (this.knownAs.get(videoGame.name) as number) + knownAsValue,
+        );
+      } else {
+        this.knownAs.set(knownAsName, knownAsValue);
+      }
     }
+
     // Add to releases
     for (const [platformName, releaseMap] of videoGame.releases) {
       for (const [releaseDateString, count] of releaseMap) {
