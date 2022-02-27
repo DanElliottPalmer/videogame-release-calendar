@@ -6,9 +6,9 @@ import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
 
 const ps5 = new Platform('Playstation 5');
-ps5.addKnownAs(['PS5', 'Playstation5']);
+ps5.addKnownAs(['PS5', 'Playstation5', 'PlayStation 5']);
 const ps4 = new Platform('Playstation 4');
-ps4.addKnownAs(['PS4', 'Playstation4']);
+ps4.addKnownAs(['PS4', 'Playstation4', 'PlayStation 4']);
 const psvr = new Platform('Playstation VR');
 psvr.addKnownAs(['PSVR', 'PS VR']);
 const pc = new Platform('PC');
@@ -25,12 +25,13 @@ stadia.addKnownAs('Stadia');
 const android = new Platform('Android');
 const ios = new Platform('iOS');
 const oculusQuest = new Platform('Oculus Quest');
-oculusQuest.addKnownAs(['Quest 2']);
+oculusQuest.addKnownAs(['Quest 2', 'Quest']);
 
 const manager = new PlatformManager();
 manager.add([
   ps5,
   ps4,
+  psvr,
   pc,
   ninSwitch,
   xsx,
