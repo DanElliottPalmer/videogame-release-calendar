@@ -1,4 +1,5 @@
 import { Platform } from './Platform.js';
+import { convertRomanNumerals } from './utils/romanNumerals.js';
 
 let GAME_ID = 0;
 
@@ -14,6 +15,13 @@ export class VideoGame {
     this.name = name;
     this.id = GAME_ID++;
     this.knownAs.set(name, 1);
+
+    const romanNumeraledName = convertRomanNumerals(this.name);
+    if (this.name !== romanNumeraledName) {
+      // Bump the original name to give more priority
+      this.knownAs.set(name, 2);
+      this.knownAs.set(romanNumeraledName, 1);
+    }
   }
 
   addReleaseDate(platform: Platform, date: Date) {
