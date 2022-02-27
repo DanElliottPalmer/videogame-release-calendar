@@ -12,36 +12,41 @@ const ps4 = new Platform('Playstation 4');
 ps4.addKnownAs(['PS4', 'Playstation4', 'PlayStation 4']);
 const psvr = new Platform('Playstation VR');
 psvr.addKnownAs(['PSVR', 'PS VR']);
-const pc = new Platform('PC');
 const ninSwitch = new Platform('Nintendo Switch');
-ninSwitch.addKnownAs(['Switch']);
-const xsx = new Platform('Xbox Series X');
-xsx.addKnownAs(['XSX']);
-const xss = new Platform('Xbox Series S');
-xss.addKnownAs(['XSS']);
+ninSwitch.addKnownAs(['Switch', 'NS']);
+const xs = new Platform('Xbox Series X/S');
+xs.addKnownAs(['XSX', 'Xbox Series S', 'Xbox Series X', 'XSS']);
 const xbo = new Platform('Xbox One');
 xbo.addKnownAs(['XBO']);
 const stadia = new Platform('Google Stadia');
 stadia.addKnownAs('Stadia');
 const android = new Platform('Android');
+android.addKnownAs(['Droid']);
 const ios = new Platform('iOS');
 const oculusQuest = new Platform('Oculus Quest');
 oculusQuest.addKnownAs(['Quest 2', 'Quest']);
+const windows = new Platform('Microsoft Windows');
+windows.addKnownAs(['Win', 'PC']);
+const linux = new Platform('Linux');
+linux.addKnownAs(['Lin']);
+const macintosh = new Platform('Macintosh');
+macintosh.addKnownAs(['Mac']);
 
 const manager = new PlatformManager();
 manager.add([
   ps5,
   ps4,
   psvr,
-  pc,
   ninSwitch,
-  xsx,
-  xss,
+  xs,
   xbo,
   stadia,
   android,
   ios,
   oculusQuest,
+  windows,
+  linux,
+  macintosh,
 ]);
 
 async function init() {
