@@ -2,7 +2,7 @@ import type { PlatformManager } from '../PlatformManager.js';
 import { JSDOM } from 'jsdom';
 import { VideoGame } from '../VideoGame.js';
 import { Platform } from '../Platform.js';
-import { findNextSiblingTagName } from './utils.js';
+import { findNextSiblingMatches } from './utils.js';
 import { PageFetcher } from './PageFetcher.js';
 
 export class TechRadarFetcher extends PageFetcher {
@@ -58,7 +58,7 @@ export class TechRadarFetcher extends PageFetcher {
       /(.+)\s+[–-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+) (\(.+\))/i;
     headings.forEach((heading: Element) => {
       // Get the next sibling that is a <ul>
-      const gameList = findNextSiblingTagName(heading, 'UL');
+      const gameList = findNextSiblingMatches(heading, 'UL');
       if (gameList === undefined) return;
       // Get each list item
       const listItems = gameList.querySelectorAll(':scope li');
