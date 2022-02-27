@@ -2,6 +2,7 @@ import type { PageFetcher } from './fetchers/PageFetcher.js';
 import type { VideoGame } from './VideoGame.js';
 import { GamesRadarFetcher } from './fetchers/GamesRadarFetcher.js';
 import { TechRadarFetcher } from './fetchers/TechRadarFetcher.js';
+import { GameInformerFetcher } from './fetchers/GameInformerFetcher.js';
 import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
 
@@ -71,6 +72,7 @@ async function init() {
   const fetchers: Array<PageFetcher> = [
     new GamesRadarFetcher(),
     new TechRadarFetcher(),
+    new GameInformerFetcher(),
   ];
   let fetcher: PageFetcher;
   for (let i = 0; i < fetchers.length; i++) {
