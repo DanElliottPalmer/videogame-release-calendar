@@ -1,9 +1,32 @@
 import { Platform } from './Platform.js';
+import { diceCoefficient } from './utils/diceCoefficient.js';
 import { convertRomanNumerals } from './utils/romanNumerals.js';
 
 let GAME_ID = 0;
 
 type ReleaseMap = Map<string, number>;
+
+function getCleanNames(game: VideoGame): Array<string> {
+  type KnownAsItem = [string, number];
+  const knownAsEntries: Array<KnownAsItem> = Array.from(game.knownAs.entries());
+  // Sort with most used name first
+  knownAsEntries.sort((entryA, entryB) => entryB[1] - entryA[1]);
+  let knownAs: Array<string> = knownAsEntries.map(
+    ([name]: KnownAsItem): string => {
+      return (
+        name
+          .toLowerCase()
+          // Replace anything that is not a letter, number or space with nothing
+          .replace(/[^\w\d\s]+/gi, '')
+          // Replace multiple whitespaces with a single space
+          .replace(/(\s\s)+/, ' ')
+      );
+    },
+  );
+  // Create a unique list of names
+  knownAs = Array.from(new Set(knownAs));
+  return knownAs;
+}
 
 export class VideoGame {
   readonly id: number;
@@ -39,6 +62,34 @@ export class VideoGame {
         (platformGroup.get(dateString) as number) + 1,
       );
     }
+  }
+
+  compareName(game: VideoGame): number {
+    const coefficients: Array<number> = [];
+    let coefficient: number;
+
+    const gameNames = getCleanNames(game);
+    const thisNames = getCleanNames(this);
+
+    for (const gameKnownAs of gameNames) {
+      const cleanGameName = gameKnownAs
+        .toLowerCase()
+        .replace(/[^\w\d\s]+/gi, '');
+
+      for (const thisKnownAs of thisNames) {
+        const cleanThisName = thisKnownAs
+          .toLowerCase()
+          .replace(/[^\w\d\s]+/gi, '');
+        coefficient = diceCoefficient(cleanGameName, cleanThisName);
+        // Complete match, skip everything else
+        if (coefficient === 1) return 1;
+        coefficients.push(coefficient);
+      }
+    }
+
+    const normalisedValue =
+      coefficients.reduce((acc, value) => acc + value, 0) / coefficients.length;
+    return normalisedValue;
   }
 
   merge(videoGame: VideoGame) {
