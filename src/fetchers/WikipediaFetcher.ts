@@ -40,30 +40,34 @@ export class WikipediaFetcher extends PageFetcher {
   protected getWikitables(): Array<Element> {
     const dom = new JSDOM(this.body);
     const tables: Array<Element> = [];
-    let node =
-      dom.window.document.querySelector('h3 #January–March').parentNode;
-    while (true) {
-      node = findNextSiblingMatches(node, 'table.wikitable, h3');
-      if (node && node.querySelector('#Unscheduled_releases')) break;
-      if (node && node.tagName !== 'TABLE') continue;
-      tables.push(node);
+    let node: HTMLElement | Element | null | undefined =
+      dom.window.document.querySelector('h3 #January–March')?.parentElement;
+
+    if (node) {
+      while (true) {
+        node = findNextSiblingMatches(node, 'table.wikitable, h3');
+        if (node === undefined) break;
+        if (node.querySelector(':scope #Unscheduled_releases')) break;
+        if (node.tagName === 'H3') continue;
+        if (node.tagName === 'TABLE') tables.push(node);
+      }
     }
     return tables;
   }
 
   protected getCellsFromRow(row: Element): Array<string> {
-    return Array.from(row.querySelectorAll('td')).map(
-      (cell: Element, index: number) => {
-        const italicText = cell.querySelector('i');
-        let cellValue: string;
-        if (italicText) {
-          cellValue = italicText.textContent;
-        } else {
-          cellValue = cell.textContent;
-        }
-        return cellValue.trim();
-      },
-    );
+    return Array.from(row.querySelectorAll('td')).map((cell: Element) => {
+      if (!cell) return '';
+      const italicText = cell.querySelector('i');
+      if (!italicText) return '';
+      let cellValue: string;
+      if (italicText) {
+        cellValue = italicText.textContent as string;
+      } else {
+        cellValue = cell.textContent as string;
+      }
+      return cellValue.trim();
+    });
   }
 
   public extract(manager: PlatformManager): Array<VideoGame> {
@@ -78,23 +82,23 @@ export class WikipediaFetcher extends PageFetcher {
       rows.forEach((row: Element, index: number) => {
         // Ignore first row as it is header columns
         if (index === 0) return;
-        const cells = this.getCellsFromRow(row);
+        let cells = this.getCellsFromRow(row);
         let gamePlatforms: string;
         switch (cells.length) {
           case 8:
-            month = cells[0];
-            dateNumber = parseInt(cells[1], 10);
-            gameName = cells[2];
-            gamePlatforms = cells[3];
+            month = cells[0] as string;
+            dateNumber = parseInt(cells[1] as string, 10);
+            gameName = cells[2] as string;
+            gamePlatforms = cells[3] as string;
             break;
           case 7:
-            dateNumber = parseInt(cells[0], 10);
-            gameName = cells[1];
-            gamePlatforms = cells[2];
+            dateNumber = parseInt(cells[0] as string, 10);
+            gameName = cells[1] as string;
+            gamePlatforms = cells[2] as string;
             break;
-          case 6:
-            gameName = cells[0];
-            gamePlatforms = cells[1];
+          default:
+            gameName = cells[0] as string;
+            gamePlatforms = cells[1] as string;
             break;
         }
 
