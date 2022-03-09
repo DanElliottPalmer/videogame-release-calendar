@@ -56,14 +56,14 @@ export class TechRadarFetcher extends PageFetcher {
     );
     const re =
       /(.+)\s+[–-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+) (\(.+\))/i;
-    headings.forEach((heading: Element) => {
+    headings.forEach((heading: HTMLElement) => {
       // Get the next sibling that is a <ul>
       const gameList = findNextSiblingMatches(heading, 'UL');
       if (gameList === undefined) return;
       // Get each list item
       const listItems = gameList.querySelectorAll(':scope li');
       // Parse
-      listItems.forEach((listItem: Element) => {
+      listItems.forEach((listItem: HTMLElement) => {
         let text: string | null = listItem.textContent;
         if (text === null) return;
         text = text.trim();
