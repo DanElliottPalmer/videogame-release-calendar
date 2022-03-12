@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Video Game Calendar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+      
+      :root {
+        --color-1: #f9faf4;
+        --color-2: #4a6163;
+        --color-3: #f9a66c;
+        --color-4: #ffc94b;
+        --color-5: #f17a7e;
+        --max-width: 700px;
+      }
+
+      body {
+        background-color: var(--color-1);
+        color: var(--color-2);
+        font-family: 'Nunito', sans-serif;
+        font-size: 16px;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: var(--max-width);
+        padding: 0 1em;
+      }
+
+      .calendar-month {}
+      .calendar-month + .calendar-month {
+        margin-top: 4em;
+      }
+      .calendar-month__title {
+        font-size: 2.5em;
+        margin-top: 0;
+      }
+      .calendar-month__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .calendar-month__list-item {
+        margin: 1em 0;
+      }
+      .calendar-month__list-item + .calendar-month__list-item {
+        border-top: 1px dashed var(--color-5);
+        padding: 1em 0 0 0;
+      }
+
+      .calendar-entry {
+        display: flex;
+      }
+      .calendar-entry__date {
+        background-color: var(--color-3);
+        border-radius: 6px;
+        color: white;
+        display: inline-block;
+        font-size: 1.2em;
+        font-weight: bold;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        width: 45px;
+      }
+      .calendar-entry__content {
+        flex: 1 0 auto;
+        margin-left: 1em;
+      }
+      .calendar-entry__content p {
+        font-size: 1.3em;
+        font-weight: bold;
+        margin: 0;
+      }
+      .calendar-entry__platform-list {
+        display: flex;
+        list-style: none;
+        margin: .3em 0 0 0;
+        padding: 0;
+      }
+      .calendar-entry__platform-list-item {}
+      .calendar-entry__platform-list-item + .calendar-entry__platform-list-item {
+        border-left: 1px solid var(--color-2);
+        font-weight: 600;
+        margin-left: .5em;
+        padding-left: .5em;
+      }
+
+
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+      
+      <section class="calendar-month">
+        <h2 class="calendar-month__title">January</h2>
+        <ol class="calendar-month__list">
+          <li class="calendar-month__list-item">
+            <div class="calendar-entry">
+              <time class="calendar-entry__date" datetime="2018-07-07">
+                01
+              </time>
+              <div class="calendar-entry__content">
+                <p>Life is Strange Remastered Collection</p>
+                <ul class="calendar-entry__platform-list">
+                  <li class="calendar-entry__platform-list-item">WIN</li>
+                  <li class="calendar-entry__platform-list-item">PS5</li>
+                  <li class="calendar-entry__platform-list-item">XBS</li>
+                  <li class="calendar-entry__platform-list-item">PS4</li>
+                  <li class="calendar-entry__platform-list-item">XBO</li>
+                  <li class="calendar-entry__platform-list-item">NS</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="calendar-month__list-item">
+            <div class="calendar-entry">
+              <time class="calendar-entry__date" datetime="2018-07-07">
+                01
+              </time>
+              <div class="calendar-entry__content">
+                <p>Life is Strange Remastered Collection</p>
+                <ul class="calendar-entry__platform-list">
+                  <li class="calendar-entry__platform-list-item">WIN</li>
+                  <li class="calendar-entry__platform-list-item">PS5</li>
+                  <li class="calendar-entry__platform-list-item">XBS</li>
+                  <li class="calendar-entry__platform-list-item">PS4</li>
+                  <li class="calendar-entry__platform-list-item">XBO</li>
+                  <li class="calendar-entry__platform-list-item">NS</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      
+    </main>
+  </body>
+</html>
