@@ -1,9 +1,11 @@
 export class Platform {
   readonly name: string;
+  readonly shortName: string;
   readonly knownAs: Set<string> = new Set();
 
-  constructor(name: string) {
+  constructor(name: string, shortName: string) {
     this.name = name;
+    this.shortName = shortName;
     this.addKnownAs(name);
   }
 

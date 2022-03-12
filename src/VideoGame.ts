@@ -5,6 +5,11 @@ import { convertRomanNumerals } from './utils/romanNumerals.js';
 let GAME_ID = 0;
 
 type ReleaseMap = Map<string, number>;
+interface VideoGameJSON {
+  id: number;
+  name: string;
+  releases: Record<string, string>;
+}
 
 function getCleanNames(game: VideoGame): Array<string> {
   type KnownAsItem = [string, number];
@@ -156,7 +161,7 @@ export class VideoGame {
     return releases;
   }
 
-  toJSON() {
+  toJSON(): VideoGameJSON {
     return {
       id: this.id,
       name: this.getName(),

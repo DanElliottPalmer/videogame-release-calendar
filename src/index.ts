@@ -6,31 +6,32 @@ import { GameInformerFetcher } from './fetchers/GameInformerFetcher.js';
 import { WikipediaFetcher } from './fetchers/WikipediaFetcher.js';
 import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
+import { createCalendar } from './utils/calendar.js';
 
-const ps5 = new Platform('Playstation 5');
+const ps5 = new Platform('Playstation 5', 'PS5');
 ps5.addKnownAs(['PS5', 'Playstation5', 'PlayStation 5']);
-const ps4 = new Platform('Playstation 4');
+const ps4 = new Platform('Playstation 4', 'PS4');
 ps4.addKnownAs(['PS4', 'Playstation4', 'PlayStation 4']);
-const psvr = new Platform('Playstation VR');
+const psvr = new Platform('Playstation VR', 'PSVR');
 psvr.addKnownAs(['PSVR', 'PS VR']);
-const ninSwitch = new Platform('Nintendo Switch');
+const ninSwitch = new Platform('Nintendo Switch', 'NS');
 ninSwitch.addKnownAs(['Switch', 'NS']);
-const xs = new Platform('Xbox Series X/S');
+const xs = new Platform('Xbox Series X/S', 'XBS');
 xs.addKnownAs(['XSX', 'Xbox Series S', 'Xbox Series X', 'XSS']);
-const xbo = new Platform('Xbox One');
+const xbo = new Platform('Xbox One', 'XBO');
 xbo.addKnownAs(['XBO']);
-const stadia = new Platform('Google Stadia');
+const stadia = new Platform('Google Stadia', 'GS');
 stadia.addKnownAs('Stadia');
-const android = new Platform('Android');
+const android = new Platform('Android', 'Droid');
 android.addKnownAs(['Droid']);
-const ios = new Platform('iOS');
-const oculusQuest = new Platform('Oculus Quest');
+const ios = new Platform('iOS', 'iOS');
+const oculusQuest = new Platform('Oculus Quest', 'OQ');
 oculusQuest.addKnownAs(['Quest 2', 'Quest']);
-const windows = new Platform('Microsoft Windows');
+const windows = new Platform('Microsoft Windows', 'Win');
 windows.addKnownAs(['Win', 'PC']);
-const linux = new Platform('Linux');
+const linux = new Platform('Linux', 'Lin');
 linux.addKnownAs(['Lin']);
-const macintosh = new Platform('Macintosh');
+const macintosh = new Platform('Macintosh', 'Mac');
 macintosh.addKnownAs(['Mac']);
 
 const manager = new PlatformManager();
@@ -90,7 +91,9 @@ async function init() {
     return !mergedGames.has(game.id);
   });
 
-  console.log(uniqueGames.map((game) => game.toJSON()));
+  // console.log(uniqueGames.map((game) => game.toJSON()));
+  const calendar = createCalendar(manager, uniqueGames);
+  console.log(calendar);
 }
 
 init();
