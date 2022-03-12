@@ -14,6 +14,10 @@
         --max-width: 700px;
       }
 
+      abbr {
+        font-style: italic;
+      }
+
       body {
         background-color: var(--color-1);
         color: var(--color-2);
@@ -118,7 +122,9 @@
                     <p>{{ name }}</p>
                     <ul class="calendar-entry__platform-list">
                       {{# platforms }}
-                        <li class="calendar-entry__platform-list-item">{{ . }}</li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="{{ name }}">{{ shortName }}</abbr>
+                        </li>
                       {{/ platforms }}
                     </ul>
                   </div>

@@ -11,7 +11,7 @@ const templatePath = path.resolve(__dirname, '../../static/template.mustache');
 const mustacheTemplate = fs.readFileSync(templatePath, 'utf8');
 const outputPath = path.resolve(__dirname, '../../rendered');
 
-export function render(calendar: Calendar){
+export function render(calendar: Calendar) {
   const html = Mustache.render(mustacheTemplate, {
     calendar,
     utils: {
@@ -20,7 +20,7 @@ export function render(calendar: Calendar){
       },
       dateToISOString(this: Entry): string {
         return this.date.toISOString();
-      }
+      },
     },
   });
 

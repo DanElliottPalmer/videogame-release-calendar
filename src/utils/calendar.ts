@@ -5,7 +5,7 @@ import type { VideoGame } from '../VideoGame.js';
 export interface Entry {
   date: Date;
   name: string;
-  platforms: Array<string>;
+  platforms: Array<Platform>;
 }
 
 export interface Month {
@@ -65,11 +65,8 @@ export function createCalendar(
         date,
         name,
         platforms: platforms
-          .map((platformName) => {
-            const p = manager.resolve(platformName) as Platform;
-            return p.shortName;
-          })
-          .sort((a, b) => a.localeCompare(b)),
+          .map((platformName) => manager.resolve(platformName) as Platform)
+          .sort((a, b) => a.shortName.localeCompare(b.shortName)),
       };
       month.entries.push(entry);
     });
