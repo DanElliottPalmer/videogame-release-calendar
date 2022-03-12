@@ -2,18 +2,18 @@ import type { Platform } from '../Platform.js';
 import type { PlatformManager } from '../PlatformManager.js';
 import type { VideoGame } from '../VideoGame.js';
 
-interface Entry {
+export interface Entry {
   date: Date;
   name: string;
   platforms: Array<string>;
 }
 
-interface Month {
+export interface Month {
   entries: Array<Entry>;
   name: string;
 }
 
-interface Calendar {
+export interface Calendar {
   months: Array<Month>;
 }
 

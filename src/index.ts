@@ -7,6 +7,7 @@ import { WikipediaFetcher } from './fetchers/WikipediaFetcher.js';
 import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
 import { createCalendar } from './utils/calendar.js';
+import { render } from './utils/render.js';
 
 const ps5 = new Platform('Playstation 5', 'PS5');
 ps5.addKnownAs(['PS5', 'Playstation5', 'PlayStation 5']);
@@ -93,7 +94,7 @@ async function init() {
 
   // console.log(uniqueGames.map((game) => game.toJSON()));
   const calendar = createCalendar(manager, uniqueGames);
-  console.log(calendar);
+  render(calendar);
 }
 
 init();
