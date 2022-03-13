@@ -21,6 +21,8 @@ function getCleanNames(game: VideoGame): Array<string> {
       return (
         name
           .toLowerCase()
+          // Replace all - with spaces
+          .replace(/-/g, ' ')
           // Replace anything that is not a letter, number or space with nothing
           .replace(/[^\w\d\s]+/gi, '')
           // Replace multiple whitespaces with a single space
