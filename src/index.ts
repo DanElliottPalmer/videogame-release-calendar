@@ -93,8 +93,14 @@ async function init() {
 
   // console.log(uniqueGames.map((game) => game.toJSON()));
   const calendar = createCalendar(manager, uniqueGames);
+  const renderDate = new Date(Date.now());
   render({
     calendar,
+    renderDate,
+    sources: fetchers.map((fetcher) => ({
+      name: fetcher.name,
+      url: fetcher.url,
+    })),
   });
 }
 

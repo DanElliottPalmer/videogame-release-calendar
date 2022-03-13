@@ -5,7 +5,8 @@ import { VideoGame } from '../VideoGame.js';
 import { PageFetcher } from './PageFetcher.js';
 
 export class GameInformerFetcher extends PageFetcher {
-  protected url: string = 'https://www.gameinformer.com/2022';
+  public readonly name: string = 'GameInformer';
+  public readonly url: string = 'https://www.gameinformer.com/2022';
 
   private processDate(dateString: string): Date | undefined {
     const thisYear = new Date().getFullYear();

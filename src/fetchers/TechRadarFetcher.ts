@@ -6,7 +6,8 @@ import { findNextSiblingMatches } from './utils.js';
 import { PageFetcher } from './PageFetcher.js';
 
 export class TechRadarFetcher extends PageFetcher {
-  protected url: string =
+  public readonly name: string = 'TechRadar';
+  public readonly url: string =
     'https://www.techradar.com/au/news/upcoming-games-2022-release-dates';
 
   private processDate(dateString: string): Date | undefined {

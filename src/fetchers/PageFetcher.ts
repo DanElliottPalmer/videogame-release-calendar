@@ -5,7 +5,8 @@ import type { VideoGame } from '../VideoGame.js';
 export abstract class PageFetcher {
   protected games: Array<VideoGame> = [];
   protected body: string;
-  protected url: string;
+  public readonly name: string;
+  public readonly url: string;
 
   public abstract extract(manager: PlatformManager): Array<VideoGame>;
 

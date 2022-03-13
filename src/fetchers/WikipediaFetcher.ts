@@ -6,7 +6,8 @@ import { PageFetcher } from './PageFetcher.js';
 import { findNextSiblingMatches } from './utils.js';
 
 export class WikipediaFetcher extends PageFetcher {
-  protected url: string =
+  public readonly name: string = 'Wikipedia';
+  public readonly url: string =
     'https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries';
 
   private processDate(dateString: string): Date | undefined {

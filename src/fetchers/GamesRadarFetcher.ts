@@ -6,7 +6,8 @@ import { findNextSiblingMatches } from './utils.js';
 import { PageFetcher } from './PageFetcher.js';
 
 export class GamesRadarFetcher extends PageFetcher {
-  protected url: string =
+  public readonly name: string = 'GamesRadar';
+  public readonly url: string =
     'https://www.gamesradar.com/uk/video-game-release-dates/';
 
   private processDate(dateString: string): Date | undefined {

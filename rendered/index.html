@@ -79,6 +79,7 @@
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
         color: white;
         display: inline-block;
+        flex: 0 0 auto;
         font-size: 1.2em;
         font-weight: bold;
         height: 45px;
@@ -88,7 +89,6 @@
         width: 45px;
       }
       .calendar-entry__content {
-        flex: 1 0 auto;
         margin-left: 1em;
       }
       .calendar-entry__content p {
@@ -98,18 +98,21 @@
       }
       .calendar-entry__platform-list {
         display: flex;
+        flex-wrap: wrap;
         list-style: none;
         margin: 0.3em 0 0 0;
         padding: 0;
       }
       .calendar-entry__platform-list-item {
+        border-right: 1px solid var(--color-2);
+        margin-right: 0.5em;
+        padding-right: 0.5em;
       }
-      .calendar-entry__platform-list-item
-        + .calendar-entry__platform-list-item {
-        border-left: 1px solid var(--color-2);
+      .calendar-entry__platform-list-item:last-child {
+        border-right: none;
         font-weight: 600;
-        margin-left: 0.5em;
-        padding-left: 0.5em;
+        margin-right: 0;
+        padding-right: 0;
       }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -125,12 +128,12 @@
         <h1 class="intro__title">Video Game Release Calendar</h1>
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
-        <p>Jump to <a href="#">today's month</a>.</p>
-        <p>Last updated at <time>12345678900</time>. Aggregating content from x, y and z.</p>
+        <p>Jump to <a href="#now">today's month</a>.</p>
+        <p>Last updated on <time datetime="2022-03-13T12:47:21.713Z"><strong>2022-03-13T12:47:21.713Z</strong></time>. Aggregating content from <a href="https://www.gamesradar.com/uk/video-game-release-dates/">GamesRadar</a>, <a href="https://www.techradar.com/au/news/upcoming-games-2022-release-dates">TechRadar</a>, <a href="https://www.gameinformer.com/2022">GameInformer</a>, and <a href="https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries">Wikipedia</a>.</p>
       </header>
       
         <section class="calendar-month">
-          <h2 class="calendar-month__title">January</h2>
+          <h2 class="calendar-month__title" id="January">January</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -642,7 +645,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">February</h2>
+          <h2 class="calendar-month__title" id="February">February</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -1433,7 +1436,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">March</h2>
+          <h2 class="calendar-month__title" id="now">March</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -2623,7 +2626,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">April</h2>
+          <h2 class="calendar-month__title" id="April">April</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -2919,7 +2922,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">May</h2>
+          <h2 class="calendar-month__title" id="May">May</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3191,7 +3194,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">June</h2>
+          <h2 class="calendar-month__title" id="June">June</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3409,7 +3412,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">July</h2>
+          <h2 class="calendar-month__title" id="July">July</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3444,7 +3447,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">August</h2>
+          <h2 class="calendar-month__title" id="August">August</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3503,7 +3506,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">September</h2>
+          <h2 class="calendar-month__title" id="September">September</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3559,7 +3562,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">October</h2>
+          <h2 class="calendar-month__title" id="October">October</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3639,7 +3642,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">November</h2>
+          <h2 class="calendar-month__title" id="November">November</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
@@ -3662,7 +3665,7 @@
           </ol>
         </section>
         <section class="calendar-month">
-          <h2 class="calendar-month__title">December</h2>
+          <h2 class="calendar-month__title" id="December">December</h2>
           <ol class="calendar-month__list">
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">

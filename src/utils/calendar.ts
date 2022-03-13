@@ -17,7 +17,7 @@ export interface Calendar {
   months: Array<Month>;
 }
 
-const monthNames = [
+export const monthNames = [
   'January',
   'February',
   'March',
