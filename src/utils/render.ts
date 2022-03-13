@@ -30,7 +30,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Mustache from 'mustache';
 import type { Calendar, Entry } from './calendar.js';
-import { monthNames } from './calendar.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,21 +45,26 @@ interface Source {
 
 interface RenderOptions {
   calendar: Calendar;
-  renderDate: Date;
+  currentMonth: string;
+  lastUpdated: Date;
   sources: Array<Source>;
 }
 
 interface RenderData {
   calendar: Calendar;
-  renderDate: string;
+  currentMonth: string;
+  lastUpdated: string;
   sources: Array<Source>;
   utils: Record<string, Function>;
 }
 
-export function render({ calendar, renderDate, sources }: RenderOptions) {
+type EntryDateHasPastFunction = (this:Entry, text:string) => string;
+
+export function render({ calendar, currentMonth, lastUpdated, sources }: RenderOptions) {
   const data: RenderData = {
     calendar,
-    renderDate: renderDate.toISOString(),
+    currentMonth,
+    lastUpdated: lastUpdated.toISOString(),
     sources,
     utils: {
       entryGetDate(this: Entry): string {

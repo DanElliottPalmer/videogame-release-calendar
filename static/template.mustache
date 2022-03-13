@@ -129,7 +129,7 @@
         <h1 class="intro__title">Video Game Release Calendar</h1>
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
-        <p>Jump to <a href="#now">today's month</a>.</p>
+        <p>Jump to <a href="#{{ currentMonth }}">today's month</a>.</p>
         <p>Last updated on <time datetime="{{ renderDate }}"><strong>{{ renderDate }}</strong></time>. Aggregating content from {{ &utils.renderSourcesListFormat }}.</p>
       </header>
       

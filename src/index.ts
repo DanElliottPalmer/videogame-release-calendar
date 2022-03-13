@@ -6,7 +6,7 @@ import { GameInformerFetcher } from './fetchers/GameInformerFetcher.js';
 import { WikipediaFetcher } from './fetchers/WikipediaFetcher.js';
 import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
-import { createCalendar } from './utils/calendar.js';
+import { createCalendar, monthNames } from './utils/calendar.js';
 import { render } from './utils/render.js';
 
 const ps5 = new Platform('Playstation 5', 'PS5');
@@ -93,10 +93,12 @@ async function init() {
 
   // console.log(uniqueGames.map((game) => game.toJSON()));
   const calendar = createCalendar(manager, uniqueGames);
-  const renderDate = new Date(Date.now());
+  const lastUpdated = new Date(Date.now());
+  const currentMonth = monthNames[lastUpdated.getMonth()] as string;
   render({
     calendar,
-    renderDate,
+    currentMonth,
+    lastUpdated,
     sources: fetchers.map((fetcher) => ({
       name: fetcher.name,
       url: fetcher.url,
