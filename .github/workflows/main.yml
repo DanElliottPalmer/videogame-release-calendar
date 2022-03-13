@@ -15,8 +15,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config user.name "Dan's Videogame Release Calendar"
-          git config user.email "danelliottpalmer+videogame-release-calendar@gmail.com"
+          git config user.name "danelliottpalmer"
+          git config user.email "danelliottpalmer@gmail.com"
 
       - name: Install and Build
         run: |
