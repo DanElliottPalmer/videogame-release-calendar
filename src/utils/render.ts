@@ -70,18 +70,18 @@ export function render({ calendar, currentMonth, lastUpdated, sources }: RenderO
       entryGetDate(this: Entry): string {
         return String(this.date.getDate()).padStart(2, '0');
       },
-      entryGetMonthId(this: Entry): string {
-        const now = new Date(Date.now());
-        const nowMonth = monthNames[now.getMonth()];
-
-        if (this.name === nowMonth) {
-          return 'now';
-        } else {
-          return this.name;
-        }
-      },
       entryDateToISOString(this: Entry): string {
         return this.date.toISOString();
+      },
+      entryDateHasPast(): EntryDateHasPastFunction {
+        const today = new Date(Date.now());
+        return function(this: Entry, text: string): string {
+          if(this.date < today){
+            return text;
+          } else {
+            return '';
+          }
+        }
       },
       renderSourcesListFormat(this: RenderData): string {
         const formatter = new Intl.ListFormat('en', {

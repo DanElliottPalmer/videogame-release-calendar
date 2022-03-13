@@ -88,6 +88,9 @@
         text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
         width: 35px;
       }
+      .calendar-entry__date--has-past {
+        background-color: var(--color-5);
+      }
       .calendar-entry__content {
         margin-left: 1em;
       }
@@ -135,12 +138,12 @@
       
       {{# calendar.months }}
         <section class="calendar-month">
-          <h2 class="calendar-month__title" id="{{ utils.entryGetMonthId }}">{{ name }}</h2>
+          <h2 class="calendar-month__title" id="{{ name }}">{{ name }}</h2>
           <ol class="calendar-month__list">
             {{# entries }}
               <li class="calendar-month__list-item">
                 <div class="calendar-entry">
-                  <time class="calendar-entry__date" datetime="{{ utils.entryDateToISOString }}">
+                  <time class="calendar-entry__date {{# utils.entryDateHasPast }}calendar-entry__date--has-past{{/ utils.entryDateHasPast }}" datetime="{{ utils.entryDateToISOString }}">
                     {{ utils.entryGetDate }}
                   </time>
                   <div class="calendar-entry__content">
