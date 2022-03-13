@@ -37,7 +37,7 @@ const __dirname = path.dirname(__filename);
 
 const templatePath = path.resolve(__dirname, '../../static/template.mustache');
 const mustacheTemplate = fs.readFileSync(templatePath, 'utf8');
-const outputPath = path.resolve(__dirname, '../../output');
+const outputPath = path.resolve(__dirname, '../../');
 
 interface Source {
   name: string;
