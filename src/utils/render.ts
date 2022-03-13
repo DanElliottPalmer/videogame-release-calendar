@@ -58,7 +58,9 @@ interface RenderData {
   utils: Record<string, Function>;
 }
 
-type EntryDateHasPastFunction = (this: Entry, text: string) => string;
+type MustacheLambda = (this: Entry, text: string) => string;
+
+let isEntryNow: boolean = false;
 
 export function render({
   calendar,
@@ -72,13 +74,24 @@ export function render({
     lastUpdated: lastUpdated.toISOString(),
     sources,
     utils: {
+      entryIsNow(): MustacheLambda {
+        const today = new Date(Date.now());
+        return function (this: Entry, text: string): string {
+          if (!isEntryNow && this.date >= today) {
+            isEntryNow = true;
+            return text;
+          } else {
+            return '';
+          }
+        };
+      },
       entryGetDate(this: Entry): string {
         return String(this.date.getDate()).padStart(2, '0');
       },
       entryDateToISOString(this: Entry): string {
         return this.date.toISOString();
       },
-      entryDateHasPast(): EntryDateHasPastFunction {
+      entryDateHasPast(): MustacheLambda {
         const today = new Date(Date.now());
         return function (this: Entry, text: string): string {
           if (this.date < today) {
