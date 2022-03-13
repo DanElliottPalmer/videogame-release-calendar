@@ -1,5 +1,10 @@
 name: Build it up!
-on: [push]
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  push:
+    branches:
+      - main
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
