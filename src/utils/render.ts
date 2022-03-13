@@ -58,9 +58,14 @@ interface RenderData {
   utils: Record<string, Function>;
 }
 
-type EntryDateHasPastFunction = (this:Entry, text:string) => string;
+type EntryDateHasPastFunction = (this: Entry, text: string) => string;
 
-export function render({ calendar, currentMonth, lastUpdated, sources }: RenderOptions) {
+export function render({
+  calendar,
+  currentMonth,
+  lastUpdated,
+  sources,
+}: RenderOptions) {
   const data: RenderData = {
     calendar,
     currentMonth,
@@ -75,13 +80,13 @@ export function render({ calendar, currentMonth, lastUpdated, sources }: RenderO
       },
       entryDateHasPast(): EntryDateHasPastFunction {
         const today = new Date(Date.now());
-        return function(this: Entry, text: string): string {
-          if(this.date < today){
+        return function (this: Entry, text: string): string {
+          if (this.date < today) {
             return text;
           } else {
             return '';
           }
-        }
+        };
       },
       renderSourcesListFormat(this: RenderData): string {
         const formatter = new Intl.ListFormat('en', {
