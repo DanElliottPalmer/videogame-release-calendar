@@ -11,7 +11,11 @@ const templatePath = path.resolve(__dirname, '../../static/template.mustache');
 const mustacheTemplate = fs.readFileSync(templatePath, 'utf8');
 const outputPath = path.resolve(__dirname, '../../rendered');
 
-export function render(calendar: Calendar) {
+interface RenderData {
+  calendar: Calendar;
+}
+
+export function render({ calendar }: RenderData) {
   const html = Mustache.render(mustacheTemplate, {
     calendar,
     utils: {

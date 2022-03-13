@@ -14,6 +14,10 @@
         --max-width: 700px;
       }
 
+      a {
+        color: var(--color-5);
+      }
+
       abbr {
         font-style: italic;
       }
@@ -26,22 +30,31 @@
       }
 
       main {
-        margin: 0 auto;
+        margin: 4em auto 0 auto;
         max-width: var(--max-width);
         padding: 0 1em;
+      }
+
+      .intro {
+        margin: 0 0 1em 0;
+      }
+      .intro__title {
+        font-size: 3em;
+        margin: 0 0 .1em 0;
       }
 
       .calendar-month {
       }
       .calendar-month + .calendar-month {
-        margin-top: 4em;
+        margin-top: 2em;
       }
       .calendar-month__title {
         background-color: var(--color-1);
         font-size: 2.5em;
         margin-top: 0;
+        padding-top: 1em;
         position: sticky;
-        top: 0;
+        top:  0;
       }
       .calendar-month__list {
         list-style: none;
@@ -108,6 +121,14 @@
   </head>
   <body>
     <main>
+      <header class="intro">
+        <h1 class="intro__title">Video Game Release Calendar</h1>
+        <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
+        <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
+        <p>Jump to <a href="#">today's month</a>.</p>
+        <p>Last updated at <time>12345678900</time>. Aggregating content from x, y and z.</p>
+      </header>
+      
       {{# calendar.months }}
         <section class="calendar-month">
           <h2 class="calendar-month__title">{{ name }}</h2>

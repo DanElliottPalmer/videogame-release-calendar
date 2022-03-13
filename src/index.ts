@@ -81,7 +81,6 @@ async function init() {
 
       gameScore = gameA.compareName(gameB);
       if (gameScore >= similarThreshold) {
-        // console.log(game.name, ',', similarGame.name, score);
         gameA.merge(gameB);
         mergedGames.add(gameB.id);
       }
@@ -94,7 +93,9 @@ async function init() {
 
   // console.log(uniqueGames.map((game) => game.toJSON()));
   const calendar = createCalendar(manager, uniqueGames);
-  render(calendar);
+  render({
+    calendar,
+  });
 }
 
 init();
