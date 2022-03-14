@@ -201,8 +201,11 @@
                 <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="{{ value }}" /> {{ label }}</label>
               {{/ platformCheckboxes }}
               <footer class="search-filters__fieldset-footer">
-                <button class="search-filters__button" id="btn-reset-checkboxes" type="button">
+                <button class="search-filters__button" id="btn-select-checkboxes" type="button">
                   Select all checkboxes
+                </button>
+                <button class="search-filters__button" id="btn-unselect-checkboxes" type="button">
+                  Unselect all checkboxes
                 </button>
               </footer>
             </fieldset>
@@ -269,7 +272,8 @@
           .map((value) => `${gameTitleSelector}.has-platform-${value}`)
           .join(', ');
 
-        const listItemSelector = `${baseSelector}:not(${platformSelector})`;
+        let listItemSelector = `${baseSelector}:not(${platformSelector})`;
+        if(!platformSelector) listItemSelector = baseSelector;
 
         document.querySelectorAll(listItemSelector).forEach((node) => {
           node.classList.add('calendar-month__list-item--is-hidden');
@@ -277,17 +281,27 @@
         previousPlatformSelector = listItemSelector;
       });
 
+      function setCheckboxes(checked){
+        document
+          .getElementsByName('chk-platform')
+          .forEach((el) => (el.checked = checked));
+        const inputEvent = new Event('input', {
+          bubbles: true,
+          cancelable: false,
+        });
+        document.forms['frm-filters'].dispatchEvent(inputEvent);
+      }
+
       document
-        .getElementById('btn-reset-checkboxes')
+        .getElementById('btn-select-checkboxes')
         .addEventListener('click', function () {
-          document
-            .getElementsByName('chk-platform')
-            .forEach((el) => (el.checked = true));
-          const inputEvent = new Event('input', {
-            bubbles: true,
-            cancelable: false,
-          });
-          document.forms['frm-filters'].dispatchEvent(inputEvent);
+          setCheckboxes(true);
+        });
+
+      document
+        .getElementById('btn-unselect-checkboxes')
+        .addEventListener('click', function () {
+          setCheckboxes(false);
         });
     })();
   </script>
