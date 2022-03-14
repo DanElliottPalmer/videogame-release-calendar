@@ -133,7 +133,7 @@
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
         <p>Jump to <a href="#{{ currentMonth }}">today's month</a> or <a href="#now">the closest date to today</a>.</p>
-        <p>Last updated on <time datetime="{{ renderDate }}"><strong>{{ renderDate }}</strong></time>. Aggregating content from {{ &utils.renderSourcesListFormat }}.</p>
+        <p>Last updated on <time datetime="{{ lastUpdated }}"><strong>{{ lastUpdated }}</strong></time>. Aggregating content from {{ &utils.renderSourcesListFormat }}.</p>
       </header>
       
       {{# calendar.months }}
