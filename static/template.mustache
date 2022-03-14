@@ -80,6 +80,17 @@
         font-weight: var(--semi-bold);
       }
 
+      .search-filters__fieldset-footer {
+        border-top: 1px solid var(--important-color);
+        margin-top: .5rem;
+        padding-top: .5rem;
+      }
+
+      .search-filters__button {
+        font-size: 1rem;
+        padding: .5rem;
+      }
+
       /* Calendar Month Section */
       .calendar-month {
       }
@@ -189,6 +200,11 @@
               {{# platformCheckboxes }}
                 <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="{{ value }}" /> {{ label }}</label>
               {{/ platformCheckboxes }}
+              <footer class="search-filters__fieldset-footer">
+                <button class="search-filters__button" id="btn-reset-checkboxes" type="button">
+                  Select all checkboxes
+                </button>
+              </footer>
             </fieldset>
           </div>
         </form>
@@ -241,7 +257,7 @@
         // Title search
         const gameTitleSearch = frmData.get('txt-search').trim();
         let gameTitleSelector = '';
-        if(gameTitleSearch !== ''){
+        if (gameTitleSearch !== '') {
           // Check if data-game-title attribute contains our title case
           // insensitive
           gameTitleSelector = `[data-game-title*="${gameTitleSearch}"i]`;
@@ -260,6 +276,19 @@
         });
         previousPlatformSelector = listItemSelector;
       });
+
+      document
+        .getElementById('btn-reset-checkboxes')
+        .addEventListener('click', function () {
+          document
+            .getElementsByName('chk-platform')
+            .forEach((el) => (el.checked = true));
+          const inputEvent = new Event('input', {
+            bubbles: true,
+            cancelable: false,
+          });
+          document.forms['frm-filters'].dispatchEvent(inputEvent);
+        });
     })();
   </script>
 </html>
