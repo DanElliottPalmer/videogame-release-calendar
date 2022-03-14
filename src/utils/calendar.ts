@@ -72,6 +72,8 @@ export function createCalendar(
     });
   });
 
+  calendar.months = calendar.months.filter((month) => month);
+
   calendar.months.forEach((month) => {
     month.entries.sort((entryA, entryB) => {
       // Sort my date
