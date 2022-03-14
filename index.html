@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
       :root {
-        --color-1: #f9faf4;
-        --color-2: #4a6163;
-        --color-3: #f9a66c;
-        --color-4: #ffc94b;
-        --color-5: #f17a7e;
         --max-width: 700px;
+
+        --background-color: #f5f5f5;
+        --text-color: #4a6163;
+        --important-color: #f17a7e;
+        --accent-color: #f9a66c;
+
+        --semi-bold: 600;
       }
 
       a {
-        color: var(--color-5);
+        color: var(--important-color);
       }
 
       abbr {
@@ -23,8 +25,8 @@
       }
 
       body {
-        background-color: var(--color-1);
-        color: var(--color-2);
+        background-color: var(--background-color);
+        color: var(--text-color);
         font-family: 'Nunito', sans-serif;
         font-size: 16px;
       }
@@ -35,26 +37,63 @@
         padding: 0 1em;
       }
 
+      /* My Swanky Intro */
       .intro {
         margin: 0 0 1em 0;
       }
       .intro__title {
         font-size: 2em;
-        margin: 0 0 .1em 0;
+        margin: 0 0 0.1em 0;
       }
 
+      /* Search Filters Section */
+      .search-filters {
+        margin: 2em 0 1em 0;
+      }
+      .seach-filters__group {
+        margin: 0.5em 0;
+      }
+
+      .search-filters__search {
+        /* I'm not cool about adding this but Safari does not like adding the changes */
+        -webkit-appearance: textfield;
+        font-size: 1em;
+        margin-left: 0.5em;
+        padding: 0.3em 0.5em;
+      }
+
+      .search-filters__checkbox {
+        margin-right: 0.5em;
+      }
+
+      .search-filters__fieldset {
+        border-color: var(--important-color);
+        border-style: solid;
+        border-width: 1px;
+      }
+
+      .search-filters__label {
+        display: inline-block;
+        margin: 0 1em 0.5em 0;
+      }
+
+      .search-filters__legend {
+        font-weight: var(--semi-bold);
+      }
+
+      /* Calendar Month Section */
       .calendar-month {
       }
       .calendar-month + .calendar-month {
         margin-top: 1.5em;
       }
       .calendar-month__title {
-        background-color: var(--color-1);
+        background-color: var(--background-color);
         font-size: 1.5em;
         margin-top: 0;
-        padding-top: 1em;
+        padding-top: 0.5em;
         position: sticky;
-        top:  0;
+        top: 0;
       }
       .calendar-month__list {
         list-style: none;
@@ -62,20 +101,23 @@
         padding: 0;
       }
       .calendar-month__list-item {
-        margin: .5em 0;
+        border-bottom: 1px dashed var(--important-color);
+        margin: 0.5em 0;
+        padding: 0 0 0.5em 0;
       }
-      .calendar-month__list-item + .calendar-month__list-item {
-        border-top: 1px dashed var(--color-5);
-        padding: .5em 0 0 0;
+      .calendar-month__list-item--is-hidden {
+        display: none;
       }
 
+
+      /* Calendar Entry Section */
       .calendar-entry {
         display: flex;
       }
       .calendar-entry__date {
-        background-color: var(--color-3);
+        background-color: var(--accent-color);
         border-radius: 6px;
-        border: 1px solid var(--color-5);
+        border: 1px solid var(--important-color);
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
         color: white;
         display: inline-block;
@@ -89,7 +131,7 @@
         width: 35px;
       }
       .calendar-entry__date--has-past {
-        background-color: var(--color-5);
+        background-color: var(--important-color);
       }
       .calendar-entry__content {
         margin-left: 1em;
@@ -102,13 +144,13 @@
       .calendar-entry__platform-list {
         display: flex;
         flex-wrap: wrap;
-        font-size: .9em;
+        font-size: 0.9em;
         list-style: none;
         margin: 0.3em 0 0 0;
         padding: 0;
       }
       .calendar-entry__platform-list-item {
-        border-right: 1px solid var(--color-2);
+        border-right: 1px solid var(--text-color);
         margin-right: 0.5em;
         padding-right: 0.5em;
       }
@@ -133,13 +175,40 @@
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
         <p>Jump to <a href="#March">today's month</a> or <a href="#now">the closest date to today</a>.</p>
-        <p>Last updated on <time datetime="2022-03-14T08:37:12.242Z"><strong>2022-03-14T08:37:12.242Z</strong></time>. Aggregating content from <a href="https://www.gamesradar.com/uk/video-game-release-dates/">GamesRadar</a>, <a href="https://www.techradar.com/au/news/upcoming-games-2022-release-dates">TechRadar</a>, <a href="https://www.gameinformer.com/2022">GameInformer</a>, and <a href="https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries">Wikipedia</a>.</p>
+        <p>Last updated on <time datetime="2022-03-14T12:02:45.608Z"><strong>2022-03-14T12:02:45.608Z</strong></time>. Aggregating content from <a href="https://www.gamesradar.com/uk/video-game-release-dates/">GamesRadar</a>, <a href="https://www.techradar.com/au/news/upcoming-games-2022-release-dates">TechRadar</a>, <a href="https://www.gameinformer.com/2022">GameInformer</a>, and <a href="https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries">Wikipedia</a>.</p>
       </header>
+
+      <details class="search-filters" open>
+        <summary><strong>Search Filters</strong></summary>
+        <form id="frm-filters">
+          <div class="search-filters__group">
+            <label class="search-filters__label">Search for game title: <input class="search-filters__search" type="search" name="txt-search" /></label>
+          </div>
+          <div class="search-filters__group">
+            <fieldset class="search-filters__fieldset">
+              <legend class="search-filters__legend">Select platforms to display:</legend>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="ps5" /> Playstation 5 (PS5)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="ps4" /> Playstation 4 (PS4)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="psvr" /> Playstation VR (PSVR)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="ns" /> Nintendo Switch (NS)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="xbs" /> Xbox Series X&#x2F;S (XBS)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="xbo" /> Xbox One (XBO)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="gs" /> Google Stadia (GS)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="droid" /> Android (Droid)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="ios" /> iOS (iOS)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="oq" /> Oculus Quest (OQ)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="win" /> Microsoft Windows (Win)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="lin" /> Linux (Lin)</label>
+                <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="mac" /> Macintosh (Mac)</label>
+            </fieldset>
+          </div>
+        </form>
+      </details>
       
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="January">January</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5"  data-game-title="Deep Rock Galactic">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-04T00:00:00.000Z">
                     04
@@ -157,7 +226,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Monster Hunter Rise">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-12T00:00:00.000Z">
                     12
@@ -172,7 +241,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-xbo has-platform-xbs"  data-game-title="Spelunky 2">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-12T00:00:00.000Z">
                     12
@@ -190,7 +259,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Astroneer">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-13T00:00:00.000Z">
                     13
@@ -205,7 +274,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Shadow Man Remastered">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-13T00:00:00.000Z">
                     13
@@ -229,7 +298,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="God Of War">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-14T00:00:00.000Z">
                     14
@@ -244,7 +313,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Shadow Man Remastered">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-17T00:00:00.000Z">
                     17
@@ -259,7 +328,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Nobody Saves the World">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-18T00:00:00.000Z">
                     18
@@ -280,7 +349,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5"  data-game-title="River City Girls">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-18T00:00:00.000Z">
                     18
@@ -295,7 +364,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Yu-Gi-Oh! Master Duel">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-19T00:00:00.000Z">
                     19
@@ -325,7 +394,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Expeditions: Rome">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-20T00:00:00.000Z">
                     20
@@ -340,7 +409,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Pupperazzi">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-20T00:00:00.000Z">
                     20
@@ -361,7 +430,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Rainbow Six Extraction">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-20T00:00:00.000Z">
                     20
@@ -391,7 +460,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo"  data-game-title="Windjammers 2">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-20T00:00:00.000Z">
                     20
@@ -421,7 +490,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Baby Storm">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-21T00:00:00.000Z">
                     21
@@ -436,7 +505,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-xbo"  data-game-title="MouseCraft">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-21T00:00:00.000Z">
                     21
@@ -451,7 +520,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Cannibal Cuisine">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-25T00:00:00.000Z">
                     25
@@ -475,7 +544,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-droid has-platform-ios"  data-game-title="El Hijo - A Wild West Tale">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-25T00:00:00.000Z">
                     25
@@ -493,7 +562,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5"  data-game-title="The Artful Escape">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-25T00:00:00.000Z">
                     25
@@ -514,7 +583,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4"  data-game-title="Circuit Superstars">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-27T00:00:00.000Z">
                     27
@@ -529,7 +598,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Daemon X Machina">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-27T00:00:00.000Z">
                     27
@@ -544,7 +613,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5"  data-game-title="Monster Harvest">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-27T00:00:00.000Z">
                     27
@@ -559,7 +628,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Rugby 22">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-27T00:00:00.000Z">
                     27
@@ -586,7 +655,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="The Longest Road on Earth">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-27T00:00:00.000Z">
                     27
@@ -613,7 +682,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Pokémon Legends: Arceus">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-28T00:00:00.000Z">
                     28
@@ -628,7 +697,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-win"  data-game-title="Uncharted: Legacy of Thieves Collection">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-01-28T00:00:00.000Z">
                     28
@@ -651,7 +720,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="February">February</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Life is Strange Remastered Collection">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-01T00:00:00.000Z">
                     01
@@ -681,7 +750,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="The Waylanders">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-02T00:00:00.000Z">
                     02
@@ -696,7 +765,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-xbo has-platform-xbs"  data-game-title="Dreamscaper">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-03T00:00:00.000Z">
                     03
@@ -714,7 +783,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Sherlock Holmes: Crimes And Punishments">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-03T00:00:00.000Z">
                     03
@@ -729,7 +798,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-droid has-platform-ios"  data-game-title="Yu-Gi-Oh! Master Duel">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-03T00:00:00.000Z">
                     03
@@ -747,7 +816,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Dying Light 2 Stay Human">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-04T00:00:00.000Z">
                     04
@@ -774,7 +843,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="OlliOlli World">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-08T00:00:00.000Z">
                     08
@@ -804,7 +873,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="Sifu">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-08T00:00:00.000Z">
                     08
@@ -825,7 +894,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Action Arcade Wrestling">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-09T00:00:00.000Z">
                     09
@@ -840,7 +909,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Backbone">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-09T00:00:00.000Z">
                     09
@@ -855,7 +924,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="GetsuFumaDen: Undying Moon">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-09T00:00:00.000Z">
                     09
@@ -870,7 +939,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-xbo has-platform-xbs"  data-game-title="CrossfireX">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -888,7 +957,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Edge of Eternity">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -912,7 +981,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Kardboard Kings">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -927,7 +996,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Kingdom Hearts 2.8 Final Chapter Prologue">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -942,7 +1011,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Kingdom Hearts HD 1.5 + 2.5 Remix">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -957,7 +1026,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Kingdom Hearts III">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -972,7 +1041,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Know By Heart">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-10T00:00:00.000Z">
                     10
@@ -987,7 +1056,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Lost Ark">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-11T00:00:00.000Z">
                     11
@@ -1002,7 +1071,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-xbo"  data-game-title="Oddworld: Stranger&#39;s Wrath HD">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-11T00:00:00.000Z">
                     11
@@ -1020,7 +1089,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Infernax">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-14T00:00:00.000Z">
                     14
@@ -1050,7 +1119,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-xbs"  data-game-title="Cyberpunk 2077">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-15T00:00:00.000Z">
                     15
@@ -1068,7 +1137,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Dynasty Warriors 9 Empires">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-15T00:00:00.000Z">
                     15
@@ -1101,7 +1170,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="GetsuFumaDen: Undying Moon">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-16T00:00:00.000Z">
                     16
@@ -1116,7 +1185,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Assassin&#39;s Creed: The Ezio Collection">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-17T00:00:00.000Z">
                     17
@@ -1131,7 +1200,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbs"  data-game-title="The King of Fighters XV">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-17T00:00:00.000Z">
                     17
@@ -1155,7 +1224,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Total War: Warhammer III">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-17T00:00:00.000Z">
                     17
@@ -1170,7 +1239,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5"  data-game-title="Horizon Forbidden West">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-18T00:00:00.000Z">
                     18
@@ -1188,7 +1257,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Destiny 2: The Witch Queen">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-22T00:00:00.000Z">
                     22
@@ -1218,7 +1287,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="Monark">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-22T00:00:00.000Z">
                     22
@@ -1242,7 +1311,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-xbo"  data-game-title="Monster Crown">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-22T00:00:00.000Z">
                     22
@@ -1260,7 +1329,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win"  data-game-title="Sol Cresta">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-22T00:00:00.000Z">
                     22
@@ -1281,7 +1350,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Edge of Eternity">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-23T00:00:00.000Z">
                     23
@@ -1296,7 +1365,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Martha Is Dead">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-24T00:00:00.000Z">
                     24
@@ -1323,7 +1392,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Never Alone">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-24T00:00:00.000Z">
                     24
@@ -1338,7 +1407,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Roguebook">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-24T00:00:00.000Z">
                     24
@@ -1362,7 +1431,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win"  data-game-title="Atelier Sophie 2: The Alchemist of the Mysterious Dream">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-25T00:00:00.000Z">
                     25
@@ -1383,7 +1452,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Elden Ring">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-25T00:00:00.000Z">
                     25
@@ -1410,7 +1479,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Grid Legends">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-02-25T00:00:00.000Z">
                     25
@@ -1442,7 +1511,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="March">March</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Elex II">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-01T00:00:00.000Z">
                     01
@@ -1469,7 +1538,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Far: Changing Tides">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-01T00:00:00.000Z">
                     01
@@ -1499,7 +1568,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-droid has-platform-ios has-platform-win"  data-game-title="Puzzle Quest 3">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-01T00:00:00.000Z">
                     01
@@ -1520,7 +1589,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Shadow Warrior 3">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-01T00:00:00.000Z">
                     01
@@ -1541,7 +1610,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="Babylon&#39;s Fall">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-03T00:00:00.000Z">
                     03
@@ -1562,7 +1631,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5"  data-game-title="Gran Turismo 7">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-04T00:00:00.000Z">
                     04
@@ -1580,7 +1649,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Triangle Strategy">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-04T00:00:00.000Z">
                     04
@@ -1595,34 +1664,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
-                <div class="calendar-entry">
-                  <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-08T00:00:00.000Z">
-                    08
-                  </time>
-                  <div class="calendar-entry__content">
-                    <p>Jurassic World Evolution 2: Camp Cretaceous Dinosaur Pack DLC</p>
-                    <ul class="calendar-entry__platform-list">
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Playstation 4">PS4</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Playstation 5">PS5</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Microsoft Windows">Win</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox One">XBO</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-droid has-platform-ios has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="RPG Time: The Legend of Wright">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-09T00:00:00.000Z">
                     09
@@ -1649,7 +1691,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Ashwalkers">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1664,13 +1706,13 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbs"  data-game-title="Assassin&#39;s Creed Valhalla: Dawn of Ragnarok">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
                   </time>
                   <div class="calendar-entry__content">
-                    <p>Assassin&#39;s Creed Valhalla: Dawn of Ragnarok DLC</p>
+                    <p>Assassin&#39;s Creed Valhalla: Dawn of Ragnarok</p>
                     <ul class="calendar-entry__platform-list">
                         <li class="calendar-entry__platform-list-item">
                           <abbr title="Playstation 4">PS4</abbr>
@@ -1679,19 +1721,13 @@
                           <abbr title="Playstation 5">PS5</abbr>
                         </li>
                         <li class="calendar-entry__platform-list-item">
-                          <abbr title="Microsoft Windows">Win</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox One">XBO</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
                           <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
                         </li>
                     </ul>
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Aztech Forgotten Gods">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1721,22 +1757,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
-                <div class="calendar-entry">
-                  <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
-                    10
-                  </time>
-                  <div class="calendar-entry__content">
-                    <p>Century: Age of Ashes</p>
-                    <ul class="calendar-entry__platform-list">
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Chocobo GP">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1751,7 +1772,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Submerged: Hidden Depths">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1778,28 +1799,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
-                <div class="calendar-entry">
-                  <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
-                    10
-                  </time>
-                  <div class="calendar-entry__content">
-                    <p>Time Loader</p>
-                    <ul class="calendar-entry__platform-list">
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Nintendo Switch">NS</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Playstation 4">PS4</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox One">XBO</abbr>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Workshop Simulator">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1820,7 +1820,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Young Souls">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-10T00:00:00.000Z">
                     10
@@ -1844,46 +1844,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
-                <div class="calendar-entry">
-                  <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-11T00:00:00.000Z">
-                    11
-                  </time>
-                  <div class="calendar-entry__content">
-                    <p>.hack&#x2F;&#x2F;G.U. Last Recode</p>
-                    <ul class="calendar-entry__platform-list">
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Nintendo Switch">NS</abbr>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="calendar-month__list-item" >
-                <div class="calendar-entry">
-                  <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-11T00:00:00.000Z">
-                    11
-                  </time>
-                  <div class="calendar-entry__content">
-                    <p>Hotel Transylvania: Scary Tale Adventures</p>
-                    <ul class="calendar-entry__platform-list">
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Nintendo Switch">NS</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Playstation 4">PS4</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Microsoft Windows">Win</abbr>
-                        </li>
-                        <li class="calendar-entry__platform-list-item">
-                          <abbr title="Xbox One">XBO</abbr>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="WWE 2K22">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date calendar-entry__date--has-past" datetime="2022-03-11T00:00:00.000Z">
                     11
@@ -1910,7 +1871,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" id="now">
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-xbs" id="now" data-game-title="Grand Theft Auto V">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -1928,7 +1889,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-xbs"  data-game-title="GTA 5">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -1946,7 +1907,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-xbs"  data-game-title="GTA Online">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -1964,7 +1925,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="GTA Online – March TBC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -1994,7 +1955,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Phantom Breaker: Omnia">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -2018,7 +1979,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4"  data-game-title="The Cruel King and the Great Hero">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -2036,7 +1997,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Two Point Hospital: Speedy Recovery DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-15T00:00:00.000Z">
                     15
@@ -2051,7 +2012,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Paradise Killer">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-16T00:00:00.000Z">
                     16
@@ -2075,7 +2036,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Tunic">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-16T00:00:00.000Z">
                     16
@@ -2096,7 +2057,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-win"  data-game-title="Anno: Mutationem">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2114,7 +2075,46 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-xbo"  data-game-title="Curious Expedition 2">
+                <div class="calendar-entry">
+                  <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
+                    17
+                  </time>
+                  <div class="calendar-entry__content">
+                    <p>Curious Expedition 2</p>
+                    <ul class="calendar-entry__platform-list">
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 4">PS4</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox One">XBO</abbr>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-xbo"  data-game-title="Curious Expedition 2: Highlands of Avalon DLC">
+                <div class="calendar-entry">
+                  <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
+                    17
+                  </time>
+                  <div class="calendar-entry__content">
+                    <p>Curious Expedition 2: Highlands of Avalon DLC</p>
+                    <ul class="calendar-entry__platform-list">
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Nintendo Switch">NS</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 4">PS4</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox One">XBO</abbr>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Dark Deity">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2129,7 +2129,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Monster Energy Supercross 5">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2156,7 +2156,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win"  data-game-title="Persona 4 Arena Ultimax">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2177,7 +2177,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbs"  data-game-title="Shredders">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2195,7 +2195,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-oq has-platform-psvr"  data-game-title="Startenders">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2213,7 +2213,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="This Means Warp">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2228,7 +2228,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="WRC 10 (EU)">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-17T00:00:00.000Z">
                     17
@@ -2243,7 +2243,37 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Royal Frontier">
+                <div class="calendar-entry">
+                  <time class="calendar-entry__date " datetime="2022-03-18T00:00:00.000Z">
+                    18
+                  </time>
+                  <div class="calendar-entry__content">
+                    <p>Royal Frontier</p>
+                    <ul class="calendar-entry__platform-list">
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Nintendo Switch">NS</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 4">PS4</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 5">PS5</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Microsoft Windows">Win</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox One">XBO</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Stranger of Paradise Final Fantasy Origin">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-18T00:00:00.000Z">
                     18
@@ -2270,7 +2300,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Who Pressed Mute on Uncle Marcus?">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-18T00:00:00.000Z">
                     18
@@ -2294,7 +2324,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Rune Factory 5">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-22T00:00:00.000Z">
                     22
@@ -2309,7 +2339,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="A Memoir Blue">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-24T00:00:00.000Z">
                     24
@@ -2339,7 +2369,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Expedition Zero">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-24T00:00:00.000Z">
                     24
@@ -2354,7 +2384,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-gs has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Lumote: The Mastermote Chronicles">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-24T00:00:00.000Z">
                     24
@@ -2381,7 +2411,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5"  data-game-title="The Ascent">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-24T00:00:00.000Z">
                     24
@@ -2399,7 +2429,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-win"  data-game-title="GhostWire: Tokyo">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-25T00:00:00.000Z">
                     25
@@ -2417,7 +2447,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Kirby and the Forgotten Land">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-25T00:00:00.000Z">
                     25
@@ -2432,7 +2462,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Tiny Tina&#39;s Wonderlands">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-25T00:00:00.000Z">
                     25
@@ -2459,7 +2489,31 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Lost Judgment: The Kaito Files DLC">
+                <div class="calendar-entry">
+                  <time class="calendar-entry__date " datetime="2022-03-28T00:00:00.000Z">
+                    28
+                  </time>
+                  <div class="calendar-entry__content">
+                    <p>Lost Judgment: The Kaito Files DLC</p>
+                    <ul class="calendar-entry__platform-list">
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 4">PS4</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Playstation 5">PS5</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox One">XBO</abbr>
+                        </li>
+                        <li class="calendar-entry__platform-list-item">
+                          <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-xbs"  data-game-title="Crusader Kings 3">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-29T00:00:00.000Z">
                     29
@@ -2477,7 +2531,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4"  data-game-title="In Nightmare">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-29T00:00:00.000Z">
                     29
@@ -2492,7 +2546,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="WRC 10 (US)">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-29T00:00:00.000Z">
                     29
@@ -2507,7 +2561,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Death Stranding Director&#39;s Cut">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-30T00:00:00.000Z">
                     30
@@ -2522,7 +2576,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Uragun">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-30T00:00:00.000Z">
                     30
@@ -2537,7 +2591,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-win"  data-game-title="Coromon">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-31T00:00:00.000Z">
                     31
@@ -2555,7 +2609,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="FixFox">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-31T00:00:00.000Z">
                     31
@@ -2570,7 +2624,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Pirates of Gravitae">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-31T00:00:00.000Z">
                     31
@@ -2585,7 +2639,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Starship Troopers - Terran Command">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-31T00:00:00.000Z">
                     31
@@ -2600,7 +2654,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Weird West">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-03-31T00:00:00.000Z">
                     31
@@ -2632,7 +2686,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="April">April</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Lego Star Wars: The Skywalker Saga">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-05T00:00:00.000Z">
                     05
@@ -2662,7 +2716,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="MLB The Show">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-05T00:00:00.000Z">
                     05
@@ -2686,7 +2740,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Chrono Cross: The Radical Dreamers Edition">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-07T00:00:00.000Z">
                     07
@@ -2710,7 +2764,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="The House of the Dead: Remake">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-07T00:00:00.000Z">
                     07
@@ -2725,7 +2779,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Advance Wars 1+2: Re-Boot Camp">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-08T00:00:00.000Z">
                     08
@@ -2740,7 +2794,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="13 Sentinels: Aegis Rim">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-12T00:00:00.000Z">
                     12
@@ -2755,7 +2809,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Back 4 Blood: Tunnels of Terror DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-12T00:00:00.000Z">
                     12
@@ -2782,7 +2836,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-win"  data-game-title="Cat Cafe Manager">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-14T00:00:00.000Z">
                     14
@@ -2800,7 +2854,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="Road 96">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-14T00:00:00.000Z">
                     14
@@ -2824,7 +2878,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Tormented Souls">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-14T00:00:00.000Z">
                     14
@@ -2839,7 +2893,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Star Wars: The Force Unleashed">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-20T00:00:00.000Z">
                     20
@@ -2854,7 +2908,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps5 has-platform-win has-platform-xbs"  data-game-title="The Serpent Rogue">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-26T00:00:00.000Z">
                     26
@@ -2878,7 +2932,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Zombie Army 4: Dead War">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-26T00:00:00.000Z">
                     26
@@ -2893,7 +2947,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="MLB The Show">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-27T00:00:00.000Z">
                     27
@@ -2908,7 +2962,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Nintendo Switch Sports">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-04-29T00:00:00.000Z">
                     29
@@ -2928,7 +2982,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="May">May</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Best Month Ever">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-05T00:00:00.000Z">
                     05
@@ -2958,7 +3012,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Warhammer 40,000: Chaos Gate - Daemonhunters">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-05T00:00:00.000Z">
                     05
@@ -2973,7 +3027,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="Salt and Sacrifice">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-10T00:00:00.000Z">
                     10
@@ -2994,7 +3048,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="The Centennial Case: A Shijima Story">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-12T00:00:00.000Z">
                     12
@@ -3018,7 +3072,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Evil Dead: The Game">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-13T00:00:00.000Z">
                     13
@@ -3048,7 +3102,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Two Point Campus">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-17T00:00:00.000Z">
                     17
@@ -3078,7 +3132,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Vampire: The Masquerade - Swansong">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-19T00:00:00.000Z">
                     19
@@ -3108,7 +3162,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Dolmen">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-20T00:00:00.000Z">
                     20
@@ -3135,7 +3189,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="Sons of the Forest">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-20T00:00:00.000Z">
                     20
@@ -3150,7 +3204,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbs"  data-game-title="Microsoft Flight Simulator: Top Gun Maverick DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-27T00:00:00.000Z">
                     27
@@ -3168,7 +3222,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Pac-Man Museum+">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-05-27T00:00:00.000Z">
                     27
@@ -3200,7 +3254,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="June">June</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="SpellForce 3 Reforced">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-07T00:00:00.000Z">
                     07
@@ -3224,7 +3278,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-xbo has-platform-xbs"  data-game-title="SpellForce 3 Reforced Complete Edition">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-07T00:00:00.000Z">
                     07
@@ -3248,7 +3302,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="SpellForce 3 Reforced: Fallen God DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-07T00:00:00.000Z">
                     07
@@ -3275,7 +3329,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="SpellForce 3 Reforced: Soul Harvest DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-07T00:00:00.000Z">
                     07
@@ -3302,7 +3356,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Mario Strikers: Battle League">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-10T00:00:00.000Z">
                     10
@@ -3317,7 +3371,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win"  data-game-title="The Day Before">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-21T00:00:00.000Z">
                     21
@@ -3332,7 +3386,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win has-platform-xbo"  data-game-title="Capcom Fighting Collection">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-24T00:00:00.000Z">
                     24
@@ -3356,7 +3410,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Fire Emblem Warriors: Three Hopes">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-24T00:00:00.000Z">
                     24
@@ -3371,7 +3425,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win"  data-game-title="Disgaea 6 Complete">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-28T00:00:00.000Z">
                     28
@@ -3392,7 +3446,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-win has-platform-xbo"  data-game-title="Cuphead: The Delicious Last Course DLC">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-06-30T00:00:00.000Z">
                     30
@@ -3418,7 +3472,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="July">July</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Klonoa Phantasy Reverie Series">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-07-08T00:00:00.000Z">
                     08
@@ -3433,7 +3487,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns"  data-game-title="Live-A-Live">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-07-22T00:00:00.000Z">
                     22
@@ -3453,7 +3507,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="August">August</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Saints Row">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-08-23T00:00:00.000Z">
                     23
@@ -3480,7 +3534,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Soul Hackers 2">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-08-26T00:00:00.000Z">
                     26
@@ -3512,7 +3566,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="September">September</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Test Drive Unlimited Solar Crown">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-09-22T00:00:00.000Z">
                     22
@@ -3542,7 +3596,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-win"  data-game-title="The Legend of Heroes: Trails from Zero">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-09-30T00:00:00.000Z">
                     30
@@ -3568,7 +3622,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="October">October</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ns has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Chef Life">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-10-07T00:00:00.000Z">
                     07
@@ -3598,7 +3652,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps5 has-platform-win"  data-game-title="Forspoken">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-10-11T00:00:00.000Z">
                     11
@@ -3616,7 +3670,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-ps4 has-platform-ps5 has-platform-win has-platform-xbo has-platform-xbs"  data-game-title="Gotham Knights">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-10-25T00:00:00.000Z">
                     25
@@ -3648,7 +3702,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="November">November</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbs"  data-game-title="Starfield">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-11-11T00:00:00.000Z">
                     11
@@ -3671,7 +3725,7 @@
         <section class="calendar-month">
           <h2 class="calendar-month__title" id="December">December</h2>
           <ol class="calendar-month__list">
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbs"  data-game-title="S.T.A.L.K.E.R. 2">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-12-08T00:00:00.000Z">
                     08
@@ -3689,7 +3743,7 @@
                   </div>
                 </div>
               </li>
-              <li class="calendar-month__list-item" >
+              <li class="calendar-month__list-item has-platform-win has-platform-xbs"  data-game-title="S.T.A.L.K.E.R. 2: Heart of Chernobyl">
                 <div class="calendar-entry">
                   <time class="calendar-entry__date " datetime="2022-12-08T00:00:00.000Z">
                     08
@@ -3711,4 +3765,44 @@
         </section>
     </main>
   </body>
+  <script type="text/javascript">
+    (function () {
+      let previousPlatformSelector = null;
+
+      document.forms['frm-filters'].addEventListener('input', function () {
+        if (previousPlatformSelector !== null) {
+          document
+            .querySelectorAll(previousPlatformSelector)
+            .forEach((node) => {
+              node.classList.remove('calendar-month__list-item--is-hidden');
+            });
+        }
+
+        const frmData = new FormData(this);
+        const baseSelector = '.calendar-month__list-item';
+
+        // Title search
+        const gameTitleSearch = frmData.get('txt-search').trim();
+        let gameTitleSelector = '';
+        if(gameTitleSearch !== ''){
+          // Check if data-game-title attribute contains our title case
+          // insensitive
+          gameTitleSelector = `[data-game-title*="${gameTitleSearch}"i]`;
+        }
+
+        // Append on platform classes
+        let platformSelector = frmData
+          .getAll('chk-platform')
+          .map((value) => `${gameTitleSelector}.has-platform-${value}`)
+          .join(', ');
+
+        const listItemSelector = `${baseSelector}:not(${platformSelector})`;
+
+        document.querySelectorAll(listItemSelector).forEach((node) => {
+          node.classList.add('calendar-month__list-item--is-hidden');
+        });
+        previousPlatformSelector = listItemSelector;
+      });
+    })();
+  </script>
 </html>
