@@ -185,7 +185,7 @@
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
         <p>Jump to <a href="#March">today's month</a> or <a href="#now">the closest date to today</a>.</p>
-        <p>Last updated on <time datetime="2022-03-14T13:19:46.957Z"><strong>2022-03-14T13:19:46.957Z</strong></time>. Aggregating content from <a href="https://www.gamesradar.com/uk/video-game-release-dates/">GamesRadar</a>, <a href="https://www.techradar.com/au/news/upcoming-games-2022-release-dates">TechRadar</a>, <a href="https://www.gameinformer.com/2022">GameInformer</a>, and <a href="https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries">Wikipedia</a>.</p>
+        <p>Last updated on <time datetime="2022-03-14T15:27:37.079Z"><strong>2022-03-14T15:27:37.079Z</strong></time>. Aggregating content from <a href="https://www.gamesradar.com/uk/video-game-release-dates/">GamesRadar</a>, <a href="https://www.techradar.com/au/news/upcoming-games-2022-release-dates">TechRadar</a>, <a href="https://www.gameinformer.com/2022">GameInformer</a>, and <a href="https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries">Wikipedia</a>.</p>
       </header>
 
       <details class="search-filters" open>
@@ -211,8 +211,11 @@
                 <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="xbo" /> Xbox One (XBO)</label>
                 <label class="search-filters__label"><input class="search-filters__checkbox" type="checkbox" checked name="chk-platform" value="xbs" /> Xbox Series X&#x2F;S (XBS)</label>
               <footer class="search-filters__fieldset-footer">
-                <button class="search-filters__button" id="btn-reset-checkboxes" type="button">
+                <button class="search-filters__button" id="btn-select-checkboxes" type="button">
                   Select all checkboxes
+                </button>
+                <button class="search-filters__button" id="btn-unselect-checkboxes" type="button">
+                  Unselect all checkboxes
                 </button>
               </footer>
             </fieldset>
@@ -3811,7 +3814,8 @@
           .map((value) => `${gameTitleSelector}.has-platform-${value}`)
           .join(', ');
 
-        const listItemSelector = `${baseSelector}:not(${platformSelector})`;
+        let listItemSelector = `${baseSelector}:not(${platformSelector})`;
+        if(!platformSelector) listItemSelector = baseSelector;
 
         document.querySelectorAll(listItemSelector).forEach((node) => {
           node.classList.add('calendar-month__list-item--is-hidden');
@@ -3819,17 +3823,27 @@
         previousPlatformSelector = listItemSelector;
       });
 
+      function setCheckboxes(checked){
+        document
+          .getElementsByName('chk-platform')
+          .forEach((el) => (el.checked = checked));
+        const inputEvent = new Event('input', {
+          bubbles: true,
+          cancelable: false,
+        });
+        document.forms['frm-filters'].dispatchEvent(inputEvent);
+      }
+
       document
-        .getElementById('btn-reset-checkboxes')
+        .getElementById('btn-select-checkboxes')
         .addEventListener('click', function () {
-          document
-            .getElementsByName('chk-platform')
-            .forEach((el) => (el.checked = true));
-          const inputEvent = new Event('input', {
-            bubbles: true,
-            cancelable: false,
-          });
-          document.forms['frm-filters'].dispatchEvent(inputEvent);
+          setCheckboxes(true);
+        });
+
+      document
+        .getElementById('btn-unselect-checkboxes')
+        .addEventListener('click', function () {
+          setCheckboxes(false);
         });
     })();
   </script>
