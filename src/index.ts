@@ -4,6 +4,7 @@ import { GamesRadarFetcher } from './fetchers/GamesRadarFetcher.js';
 import { TechRadarFetcher } from './fetchers/TechRadarFetcher.js';
 import { GameInformerFetcher } from './fetchers/GameInformerFetcher.js';
 import { WikipediaFetcher } from './fetchers/WikipediaFetcher.js';
+import { MetacriticFetcher } from './fetchers/MetacriticFetcher.js';
 import { Platform } from './Platform.js';
 import { PlatformManager } from './PlatformManager.js';
 import { createCalendar, monthNames } from './utils/calendar.js';
@@ -59,6 +60,7 @@ async function init() {
     new TechRadarFetcher(),
     new GameInformerFetcher(),
     new WikipediaFetcher(),
+    new MetacriticFetcher(),
   ];
   let fetcher: PageFetcher;
   for (let i = 0; i < fetchers.length; i++) {
