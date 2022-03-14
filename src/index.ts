@@ -95,7 +95,9 @@ async function init() {
   const calendar = createCalendar(manager, uniqueGames);
   const lastUpdated = new Date(Date.now());
   const currentMonth = monthNames[lastUpdated.getMonth()] as string;
-  const availablePlatforms = Array.from(manager);
+  const availablePlatforms = Array.from(manager).sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
   render({
     availablePlatforms,
     calendar,
