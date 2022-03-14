@@ -28,7 +28,11 @@ jobs:
             node lib/index.js
 
       - name: Commit Index.html
+        shell: bash
         run: |
-          git add index.html
-          git commit -m "feat(index): update static index"
-          git push origin main
+          FILE=index.html
+          if test -f "$FILE"; then
+            git add index.html
+            git commit -m "feat(index): update static index"
+            git push origin main
+          fi
