@@ -2,13 +2,16 @@ import type { Platform } from '../Platform.js';
 import type { PlatformManager } from '../PlatformManager.js';
 import { JSDOM } from 'jsdom';
 import { VideoGame } from '../VideoGame.js';
-import { PageFetcher } from './PageFetcher.js';
+import { WebPage, PageFetcher } from './PageFetcher.js';
 import { findNextSiblingMatches } from './utils.js';
 
 export class WikipediaFetcher extends PageFetcher {
   public readonly name: string = 'Wikipedia';
-  public readonly url: string =
-    'https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries';
+  public readonly homepageUrl: string = 'https://en.wikipedia.org/';
+
+  protected urls: Array<string> = [
+    'https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries',
+  ];
 
   private processDate(dateString: string): Date | undefined {
     const thisYear = new Date().getFullYear();
@@ -38,8 +41,8 @@ export class WikipediaFetcher extends PageFetcher {
     return platforms;
   }
 
-  protected getWikitables(): Array<Element> {
-    const dom = new JSDOM(this.body);
+  protected getWikitables(page: WebPage): Array<Element> {
+    const dom = new JSDOM(page.body);
     const tables: Array<Element> = [];
     let node: HTMLElement | Element | null | undefined =
       dom.window.document.querySelector('h3 #January–March')?.parentElement;
@@ -74,51 +77,53 @@ export class WikipediaFetcher extends PageFetcher {
   public extract(manager: PlatformManager): Array<VideoGame> {
     this.games.length = 0;
 
-    const tables = this.getWikitables();
-    tables.forEach((table: Element) => {
-      const rows = table.querySelectorAll('tr');
-      let month: string;
-      let dateNumber: number;
-      let gameName: string;
-      rows.forEach((row: Element, index: number) => {
-        // Ignore first row as it is header columns
-        if (index === 0) return;
-        let cells = this.getCellsFromRow(row);
-        let gamePlatforms: string;
-        switch (cells.length) {
-          case 8:
-            month = cells[0] as string;
-            dateNumber = parseInt(cells[1] as string, 10);
-            gameName = cells[2] as string;
-            gamePlatforms = cells[3] as string;
-            break;
-          case 7:
-            dateNumber = parseInt(cells[0] as string, 10);
-            gameName = cells[1] as string;
-            gamePlatforms = cells[2] as string;
-            break;
-          default:
-            gameName = cells[0] as string;
-            gamePlatforms = cells[1] as string;
-            break;
-        }
+    for (const page of this.fetchedPages) {
+      const tables = this.getWikitables(page);
+      tables.forEach((table: Element) => {
+        const rows = table.querySelectorAll('tr');
+        let month: string;
+        let dateNumber: number;
+        let gameName: string;
+        rows.forEach((row: Element, index: number) => {
+          // Ignore first row as it is header columns
+          if (index === 0) return;
+          let cells = this.getCellsFromRow(row);
+          let gamePlatforms: string;
+          switch (cells.length) {
+            case 8:
+              month = cells[0] as string;
+              dateNumber = parseInt(cells[1] as string, 10);
+              gameName = cells[2] as string;
+              gamePlatforms = cells[3] as string;
+              break;
+            case 7:
+              dateNumber = parseInt(cells[0] as string, 10);
+              gameName = cells[1] as string;
+              gamePlatforms = cells[2] as string;
+              break;
+            default:
+              gameName = cells[0] as string;
+              gamePlatforms = cells[1] as string;
+              break;
+          }
 
-        // If we have NaN, it means we got a TBA. Skip the row.
-        if (isNaN(dateNumber)) return;
+          // If we have NaN, it means we got a TBA. Skip the row.
+          if (isNaN(dateNumber)) return;
 
-        const name = gameName.trim();
-        const platforms = this.processPlatforms(manager, gamePlatforms);
-        const releaseDate = this.processDate(`${dateNumber} ${month}`);
+          const name = gameName.trim();
+          const platforms = this.processPlatforms(manager, gamePlatforms);
+          const releaseDate = this.processDate(`${dateNumber} ${month}`);
 
-        if (name && platforms.length > 0 && releaseDate) {
-          const videoGame = new VideoGame(name);
-          platforms.forEach((platform) => {
-            videoGame.addReleaseDate(platform, releaseDate);
-          });
-          this.games.push(videoGame);
-        }
+          if (name && platforms.length > 0 && releaseDate) {
+            const videoGame = new VideoGame(name);
+            platforms.forEach((platform) => {
+              videoGame.addReleaseDate(platform, releaseDate);
+            });
+            this.games.push(videoGame);
+          }
+        });
       });
-    });
+    }
 
     return this.games;
   }

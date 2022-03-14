@@ -105,7 +105,7 @@ async function init() {
     lastUpdated,
     sources: fetchers.map((fetcher) => ({
       name: fetcher.name,
-      url: fetcher.url,
+      url: fetcher.homepageUrl,
     })),
   });
 }

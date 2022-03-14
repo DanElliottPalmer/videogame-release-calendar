@@ -7,8 +7,11 @@ import { PageFetcher } from './PageFetcher.js';
 
 export class GamesRadarFetcher extends PageFetcher {
   public readonly name: string = 'GamesRadar';
-  public readonly url: string =
-    'https://www.gamesradar.com/uk/video-game-release-dates/';
+  public readonly homepageUrl: string = 'https://www.gamesradar.com/';
+
+  protected urls: Array<string> = [
+    'https://www.gamesradar.com/uk/video-game-release-dates/',
+  ];
 
   private processDate(dateString: string): Date | undefined {
     const thisYear = new Date().getFullYear();
@@ -45,45 +48,49 @@ export class GamesRadarFetcher extends PageFetcher {
 
   public extract(manager: PlatformManager): Array<VideoGame> {
     this.games.length = 0;
-    const dom = new JSDOM(this.body);
-    // Find all headings - february-2022-video-game-releases
-    const headings = dom.window.document.querySelectorAll(
-      '[id$="-video-game-releases"]',
-    );
-    const re =
-      /(.+) (\[.+\]) – ((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
-    headings.forEach((heading: HTMLElement) => {
-      // Get the next sibling that is a <ul>
-      const gameList = findNextSiblingMatches(heading, 'UL');
-      if (gameList === undefined) return;
-      // Get each list item
-      const listItems = gameList.querySelectorAll(':scope li');
-      // Parse
-      listItems.forEach((listItem: HTMLElement) => {
-        let text: string | null = listItem.textContent;
-        if (text === null) return;
-        text = text.trim();
-        // Rows are typically structured as:
-        // Game [Platform, Platform] - Month Day
-        // We want to ignore are dates that are TBC or do not contain one of
-        // our months.
-        let matches: RegExpMatchArray | null = text.match(re);
-        if (matches === null) return;
-        const [, gameName, gamePlatforms, gameReleaseDate] = matches;
-        const platforms = this.processPlatforms(
-          manager,
-          gamePlatforms as string,
-        );
-        const releaseDate = this.processDate(gameReleaseDate as string);
-        if (gameName && platforms.length > 0 && releaseDate) {
-          const videoGame = new VideoGame(gameName);
-          platforms.forEach((platform) => {
-            videoGame.addReleaseDate(platform, releaseDate);
-          });
-          this.games.push(videoGame);
-        }
+
+    for (const page of this.fetchedPages) {
+      const dom = new JSDOM(page.body);
+      // Find all headings - february-2022-video-game-releases
+      const headings = dom.window.document.querySelectorAll(
+        '[id$="-video-game-releases"]',
+      );
+      const re =
+        /(.+) (\[.+\]) – ((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
+      headings.forEach((heading: HTMLElement) => {
+        // Get the next sibling that is a <ul>
+        const gameList = findNextSiblingMatches(heading, 'UL');
+        if (gameList === undefined) return;
+        // Get each list item
+        const listItems = gameList.querySelectorAll(':scope li');
+        // Parse
+        listItems.forEach((listItem: HTMLElement) => {
+          let text: string | null = listItem.textContent;
+          if (text === null) return;
+          text = text.trim();
+          // Rows are typically structured as:
+          // Game [Platform, Platform] - Month Day
+          // We want to ignore are dates that are TBC or do not contain one of
+          // our months.
+          let matches: RegExpMatchArray | null = text.match(re);
+          if (matches === null) return;
+          const [, gameName, gamePlatforms, gameReleaseDate] = matches;
+          const platforms = this.processPlatforms(
+            manager,
+            gamePlatforms as string,
+          );
+          const releaseDate = this.processDate(gameReleaseDate as string);
+          if (gameName && platforms.length > 0 && releaseDate) {
+            const videoGame = new VideoGame(gameName);
+            platforms.forEach((platform) => {
+              videoGame.addReleaseDate(platform, releaseDate);
+            });
+            this.games.push(videoGame);
+          }
+        });
       });
-    });
+    }
+
     return this.games;
   }
 }

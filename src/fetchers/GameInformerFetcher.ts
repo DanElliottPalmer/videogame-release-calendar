@@ -6,7 +6,9 @@ import { PageFetcher } from './PageFetcher.js';
 
 export class GameInformerFetcher extends PageFetcher {
   public readonly name: string = 'GameInformer';
-  public readonly url: string = 'https://www.gameinformer.com/2022';
+  public readonly homepageUrl: string = 'https://www.gameinformer.com/';
+
+  protected urls: Array<string> = ['https://www.gameinformer.com/2022'];
 
   private processDate(dateString: string): Date | undefined {
     const thisYear = new Date().getFullYear();
@@ -49,29 +51,36 @@ export class GameInformerFetcher extends PageFetcher {
 
   public extract(manager: PlatformManager): Array<VideoGame> {
     this.games.length = 0;
-    const dom = new JSDOM(this.body);
-    // Find all entries - .calendar_entry
-    const entries = dom.window.document.querySelectorAll('.calendar_entry');
-    const re =
-      /(.+)\s+(\(.+\))\s+[–\-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
-    entries.forEach((entry: Element) => {
-      let text: string | null = entry.textContent;
-      if (text === null) return;
-      text = text.trim();
-      let matches: RegExpMatchArray | null = text.match(re);
-      if (matches === null) return;
-      const [, gameName, gamePlatforms, gameReleaseDate] = matches;
-      const name = (gameName as string).trim();
-      const platforms = this.processPlatforms(manager, gamePlatforms as string);
-      const releaseDate = this.processDate(gameReleaseDate as string);
-      if (name && platforms.length > 0 && releaseDate) {
-        const videoGame = new VideoGame(name);
-        platforms.forEach((platform) => {
-          videoGame.addReleaseDate(platform, releaseDate);
-        });
-        this.games.push(videoGame);
-      }
-    });
+
+    for (const page of this.fetchedPages) {
+      const dom = new JSDOM(page.body);
+      // Find all entries - .calendar_entry
+      const entries = dom.window.document.querySelectorAll('.calendar_entry');
+      const re =
+        /(.+)\s+(\(.+\))\s+[–\-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
+      entries.forEach((entry: Element) => {
+        let text: string | null = entry.textContent;
+        if (text === null) return;
+        text = text.trim();
+        let matches: RegExpMatchArray | null = text.match(re);
+        if (matches === null) return;
+        const [, gameName, gamePlatforms, gameReleaseDate] = matches;
+        const name = (gameName as string).trim();
+        const platforms = this.processPlatforms(
+          manager,
+          gamePlatforms as string,
+        );
+        const releaseDate = this.processDate(gameReleaseDate as string);
+        if (name && platforms.length > 0 && releaseDate) {
+          const videoGame = new VideoGame(name);
+          platforms.forEach((platform) => {
+            videoGame.addReleaseDate(platform, releaseDate);
+          });
+          this.games.push(videoGame);
+        }
+      });
+    }
+
     return this.games;
   }
 }
