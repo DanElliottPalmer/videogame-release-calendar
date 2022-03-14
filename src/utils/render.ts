@@ -29,6 +29,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Mustache from 'mustache';
+import type { Platform } from '../Platform.js';
 import type { Calendar, Entry } from './calendar.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,16 +45,23 @@ interface Source {
 }
 
 interface RenderOptions {
+  availablePlatforms: Array<Platform>;
   calendar: Calendar;
   currentMonth: string;
   lastUpdated: Date;
   sources: Array<Source>;
 }
 
+interface RenderDataCheckbox {
+  label: string;
+  value: string;
+}
+
 interface RenderData {
   calendar: Calendar;
   currentMonth: string;
   lastUpdated: string;
+  platformCheckboxes: Array<RenderDataCheckbox>;
   sources: Array<Source>;
   utils: Record<string, Function>;
 }
@@ -63,6 +71,7 @@ type MustacheLambda = (this: Entry, text: string) => string;
 let isEntryNow: boolean = false;
 
 export function render({
+  availablePlatforms,
   calendar,
   currentMonth,
   lastUpdated,
@@ -72,29 +81,40 @@ export function render({
     calendar,
     currentMonth,
     lastUpdated: lastUpdated.toISOString(),
+    platformCheckboxes: availablePlatforms.map((platform) => ({
+      label: `${platform.name} (${platform.shortName})`,
+      value: platform.shortName.toLowerCase(),
+    })),
     sources,
     utils: {
-      entryIsNow(): MustacheLambda {
+      entryDateHasPast(): MustacheLambda {
         const today = new Date(Date.now());
         return function (this: Entry, text: string): string {
-          if (!isEntryNow && this.date >= today) {
-            isEntryNow = true;
+          if (this.date < today) {
             return text;
           } else {
             return '';
           }
         };
       },
-      entryGetDate(this: Entry): string {
-        return String(this.date.getDate()).padStart(2, '0');
-      },
       entryDateToISOString(this: Entry): string {
         return this.date.toISOString();
       },
-      entryDateHasPast(): MustacheLambda {
+      entryGetDate(this: Entry): string {
+        return String(this.date.getDate()).padStart(2, '0');
+      },
+      entryGetPlatformClasses(this: Entry): string {
+        return this.platforms
+          .map((platform: Platform) => {
+            return `has-platform-${platform.shortName.toLowerCase()}`;
+          })
+          .join(' ');
+      },
+      entryIsNow(): MustacheLambda {
         const today = new Date(Date.now());
         return function (this: Entry, text: string): string {
-          if (this.date < today) {
+          if (!isEntryNow && this.date >= today) {
+            isEntryNow = true;
             return text;
           } else {
             return '';

@@ -18,4 +18,10 @@ export class PlatformManager {
       return platform.knownAs.has(name);
     });
   }
+
+  *[Symbol.iterator]() {
+    for (let i = 0; i < this.platforms.length; i++) {
+      yield this.platforms[i] as Platform;
+    }
+  }
 }
