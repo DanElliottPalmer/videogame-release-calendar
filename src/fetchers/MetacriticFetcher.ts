@@ -85,7 +85,7 @@ export class MetacriticFetcher extends PageFetcher {
 
     for (const page of this.fetchedPages) {
       const dom = new JSDOM(page.body);
-      const entries = dom.window.document.querySelectorAll('td.details');
+      const entries = dom.window.document.querySelectorAll('tr.expand_collapse');
       entries.forEach((entry) => {
         const gameName = entry.querySelector('.title h3')?.textContent?.trim();
         if (!gameName) return;
@@ -96,7 +96,7 @@ export class MetacriticFetcher extends PageFetcher {
         if (!gamePlatform) return;
 
         const gameReleaseDate = entry
-          .querySelector(':scope > span')
+          .querySelector('td.details > span')
           ?.textContent?.trim();
         if (!gameReleaseDate) return;
         const releaseDate = new Date(gameReleaseDate);
@@ -109,9 +109,27 @@ export class MetacriticFetcher extends PageFetcher {
           return;
         }
 
+        // Find the Metacritic and User score
+        const lblMetacriticScore = entry.querySelector(':scope > .score .game')?.textContent;
+        let metacriticScore:number | undefined;
+        if(lblMetacriticScore && lblMetacriticScore !== 'tbd'){
+          metacriticScore = parseInt(lblMetacriticScore, 10);
+        }
+        const lblUserScore = entry.querySelector(':scope > .details .score .game')?.textContent;
+        let userScore:number | undefined;
+        if(lblUserScore && lblUserScore !== 'tbd'){
+          userScore = parseFloat(lblUserScore);
+        }
+
         if (gameName && platform && releaseDate) {
           const videoGame = new VideoGame(gameName);
           videoGame.addReleaseDate(platform, releaseDate);
+          if(metacriticScore !== undefined){
+            videoGame.addScore('metacritic', metacriticScore);
+          }
+          if(userScore !== undefined){
+            videoGame.addScore('user', userScore);
+          }
           this.games.push(videoGame);
         }
       });
