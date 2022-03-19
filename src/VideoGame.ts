@@ -9,6 +9,7 @@ interface VideoGameJSON {
   id: number;
   name: string;
   releases: Record<string, string>;
+  scores: Record<string, number>;
 }
 
 function getCleanNames(game: VideoGame): Array<string> {
@@ -40,6 +41,7 @@ export class VideoGame {
   readonly knownAs: Map<string, number> = new Map();
   readonly name: string;
   readonly releases: Map<string, ReleaseMap> = new Map();
+  readonly scores:Map<string, Array<number>> = new Map();
 
   constructor(name: string) {
     this.name = name;
@@ -52,6 +54,14 @@ export class VideoGame {
       this.knownAs.set(name, 2);
       this.knownAs.set(romanNumeraledName, 1);
     }
+  }
+
+  addScore(groupName:string, value:number){
+    if(!this.scores.has(groupName)){
+      this.scores.set(groupName, []);
+    }
+    const scoreGroup = this.scores.get(groupName) as Array<number>;
+    scoreGroup.push(value);
   }
 
   addReleaseDate(platform: Platform, date: Date) {
@@ -129,6 +139,16 @@ export class VideoGame {
         }
       }
     }
+
+    // Add to scores
+    for (const [groupName, scores] of videoGame.scores) {
+      if(!this.scores.has(groupName)){
+        this.scores.set(groupName, scores);
+      } else {
+        const existingScores = this.scores.get(groupName) as Array<number>;
+        existingScores.push(...scores);
+      }
+    }
   }
 
   private getName(): string {
@@ -163,11 +183,26 @@ export class VideoGame {
     return releases;
   }
 
+  private getScores(): Record<string, number> {
+    const scores: Record<string, number> = {};
+    for(const [groupName, scoreValues] of this.scores){
+      const meanScore = scoreValues.reduce((acc, value) => acc + value, 0) / scoreValues.length;
+      scores[groupName] = roundToDecimal(meanScore);
+    }
+    return scores;
+  }
+
   toJSON(): VideoGameJSON {
     return {
       id: this.id,
       name: this.getName(),
       releases: this.getReleases(),
+      scores: this.getScores(),
     };
   }
+}
+
+function roundToDecimal(value:number, decimals:number = 1): number {
+  const a = 10**decimals;
+  return Math.round(value * a) / a;
 }
