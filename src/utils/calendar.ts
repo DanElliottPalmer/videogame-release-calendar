@@ -2,10 +2,16 @@ import type { Platform } from '../Platform.js';
 import type { PlatformManager } from '../PlatformManager.js';
 import type { VideoGame } from '../VideoGame.js';
 
+interface EntryScore {
+  label: string;
+  value: number;
+}
+
 export interface Entry {
   date: Date;
   name: string;
   platforms: Array<Platform>;
+  scores: Array<EntryScore>;
 }
 
 export interface Month {
@@ -39,8 +45,12 @@ export function createCalendar(
   const calendar: Calendar = { months: [] };
 
   videoGames.forEach((videoGame: VideoGame) => {
-    const { name, releases } = videoGame.toJSON();
+    const { name, releases, scores } = videoGame.toJSON();
     const releaseDateGroups: Record<string, Array<string>> = {};
+    const scoreGroups = Array.from(Object.entries(scores)).map(([name, value]) => ({
+      label: toCapitalise(name),
+      value
+    })).sort((a, b) => a.label.localeCompare(b.label));
 
     Object.entries(releases).forEach(([platformName, releaseDate]) => {
       let releaseDateGroup = releaseDateGroups[releaseDate];
@@ -67,6 +77,7 @@ export function createCalendar(
         platforms: platforms
           .map((platformName) => manager.resolve(platformName) as Platform)
           .sort((a, b) => a.shortName.localeCompare(b.shortName)),
+        scores: scoreGroups,
       };
       month.entries.push(entry);
     });
@@ -85,4 +96,8 @@ export function createCalendar(
   });
 
   return calendar;
+}
+
+function toCapitalise(str: string): string {
+  return `${str.substring(0, 1).toUpperCase()}${str.substring(1)}`;
 }

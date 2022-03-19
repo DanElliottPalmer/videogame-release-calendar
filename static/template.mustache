@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
       :root {
-        --max-width: 700px;
+        --max-width: 600px;
 
         --background-color: #f5f5f5;
         --text-color: #4a6163;
@@ -144,7 +144,8 @@
         background-color: var(--important-color);
       }
       .calendar-entry__content {
-        margin-left: 1em;
+        flex: 1 1 auto;
+        margin: 0 1em;
       }
       .calendar-entry__content p {
         font-size: 1em;
@@ -170,6 +171,17 @@
         margin-right: 0;
         padding-right: 0;
       }
+      .calendar-entry__score {
+        flex: 0 0 70px;
+        text-align: center;
+      }
+      .calendar-entry__score-label {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      .calendar-entry__score-value {
+        font-weight: var(--semi-bold);
+      }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -186,6 +198,7 @@
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
         <p>Jump to <a href="#{{ currentMonth }}">today's month</a> or <a href="#now">the closest date to today</a>.</p>
         <p>Last updated on <time datetime="{{ lastUpdated }}"><strong>{{ lastUpdated }}</strong></time>. Aggregating content from {{ &utils.renderSourcesListFormat }}.</p>
+        <p><small>* Metacritic and user scores are a mean value across all platforms.</small></p>
       </header>
 
       <details class="search-filters" open>
@@ -233,6 +246,12 @@
                       {{/ platforms }}
                     </ul>
                   </div>
+                  {{# scores }}
+                  <div class="calendar-entry__score">
+                    <p class="calendar-entry__score-label">{{ label }}<sup>*</sup></p>
+                    <div class="calendar-entry__score-value">{{ value }} </div>
+                  </div>
+                  {{/ scores }}
                 </div>
               </li>
             {{/ entries }}
