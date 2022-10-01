@@ -106,7 +106,7 @@ export class MetacriticFetcher extends PageFetcher {
 
         const platform = manager.resolve(gamePlatform);
         if (!platform) {
-          console.log(`Unknown platform: "${gamePlatform}"`);
+          console.log(`${this.name} - Unknown platform: "${gamePlatform}"`);
           return;
         }
 

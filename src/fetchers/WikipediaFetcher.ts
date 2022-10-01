@@ -35,7 +35,7 @@ export class WikipediaFetcher extends PageFetcher {
       if (platform) {
         platforms.push(platform);
       } else {
-        console.log(`Unknown platform: "${str}"`);
+        console.log(`${this.name} - Unknown platform: "${str}"`);
       }
     });
     return platforms;
