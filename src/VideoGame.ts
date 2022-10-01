@@ -41,7 +41,7 @@ export class VideoGame {
   readonly knownAs: Map<string, number> = new Map();
   readonly name: string;
   readonly releases: Map<string, ReleaseMap> = new Map();
-  readonly scores:Map<string, Array<number>> = new Map();
+  readonly scores: Map<string, Array<number>> = new Map();
 
   constructor(name: string) {
     this.name = name;
@@ -56,8 +56,8 @@ export class VideoGame {
     }
   }
 
-  addScore(groupName:string, value:number){
-    if(!this.scores.has(groupName)){
+  addScore(groupName: string, value: number) {
+    if (!this.scores.has(groupName)) {
       this.scores.set(groupName, []);
     }
     const scoreGroup = this.scores.get(groupName) as Array<number>;
@@ -142,7 +142,7 @@ export class VideoGame {
 
     // Add to scores
     for (const [groupName, scores] of videoGame.scores) {
-      if(!this.scores.has(groupName)){
+      if (!this.scores.has(groupName)) {
         this.scores.set(groupName, scores);
       } else {
         const existingScores = this.scores.get(groupName) as Array<number>;
@@ -185,8 +185,9 @@ export class VideoGame {
 
   private getScores(): Record<string, number> {
     const scores: Record<string, number> = {};
-    for(const [groupName, scoreValues] of this.scores){
-      const meanScore = scoreValues.reduce((acc, value) => acc + value, 0) / scoreValues.length;
+    for (const [groupName, scoreValues] of this.scores) {
+      const meanScore =
+        scoreValues.reduce((acc, value) => acc + value, 0) / scoreValues.length;
       scores[groupName] = roundToDecimal(meanScore);
     }
     return scores;
@@ -202,7 +203,7 @@ export class VideoGame {
   }
 }
 
-function roundToDecimal(value:number, decimals:number = 1): number {
-  const a = 10**decimals;
+function roundToDecimal(value: number, decimals: number = 1): number {
+  const a = 10 ** decimals;
   return Math.round(value * a) / a;
 }

@@ -47,10 +47,12 @@ export function createCalendar(
   videoGames.forEach((videoGame: VideoGame) => {
     const { name, releases, scores } = videoGame.toJSON();
     const releaseDateGroups: Record<string, Array<string>> = {};
-    const scoreGroups = Array.from(Object.entries(scores)).map(([name, value]) => ({
-      label: toCapitalise(name),
-      value
-    })).sort((a, b) => a.label.localeCompare(b.label));
+    const scoreGroups = Array.from(Object.entries(scores))
+      .map(([name, value]) => ({
+        label: toCapitalise(name),
+        value,
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
 
     Object.entries(releases).forEach(([platformName, releaseDate]) => {
       let releaseDateGroup = releaseDateGroups[releaseDate];

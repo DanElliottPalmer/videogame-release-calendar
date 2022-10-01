@@ -85,7 +85,8 @@ export class MetacriticFetcher extends PageFetcher {
 
     for (const page of this.fetchedPages) {
       const dom = new JSDOM(page.body);
-      const entries = dom.window.document.querySelectorAll('tr.expand_collapse');
+      const entries =
+        dom.window.document.querySelectorAll('tr.expand_collapse');
       entries.forEach((entry) => {
         const gameName = entry.querySelector('.title h3')?.textContent?.trim();
         if (!gameName) return;
@@ -110,24 +111,28 @@ export class MetacriticFetcher extends PageFetcher {
         }
 
         // Find the Metacritic and User score
-        const lblMetacriticScore = entry.querySelector(':scope > .score .game')?.textContent;
-        let metacriticScore:number | undefined;
-        if(lblMetacriticScore && lblMetacriticScore !== 'tbd'){
+        const lblMetacriticScore = entry.querySelector(
+          ':scope > .score .game',
+        )?.textContent;
+        let metacriticScore: number | undefined;
+        if (lblMetacriticScore && lblMetacriticScore !== 'tbd') {
           metacriticScore = parseInt(lblMetacriticScore, 10);
         }
-        const lblUserScore = entry.querySelector(':scope > .details .score .game')?.textContent;
-        let userScore:number | undefined;
-        if(lblUserScore && lblUserScore !== 'tbd'){
+        const lblUserScore = entry.querySelector(
+          ':scope > .details .score .game',
+        )?.textContent;
+        let userScore: number | undefined;
+        if (lblUserScore && lblUserScore !== 'tbd') {
           userScore = parseFloat(lblUserScore);
         }
 
         if (gameName && platform && releaseDate) {
           const videoGame = new VideoGame(gameName);
           videoGame.addReleaseDate(platform, releaseDate);
-          if(metacriticScore !== undefined){
+          if (metacriticScore !== undefined) {
             videoGame.addScore('metacritic', metacriticScore);
           }
-          if(userScore !== undefined){
+          if (userScore !== undefined) {
             videoGame.addScore('user', userScore);
           }
           this.games.push(videoGame);
