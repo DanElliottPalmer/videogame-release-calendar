@@ -190,9 +190,10 @@
     <main>
       <header class="intro">
         <h1 class="intro__title">Video Game Release Calendar</h1>
+        <p><strong><a href="./games.ics">Download / Subscribe to the calendar</a></strong></p>
         <p>I wanted a way to quickly see what games are coming out without having to faff around, visiting multiple sites to check if they're correct. I also wanted it dead simple, easy to read and easy to find games. This is that attempt.</p>
         <p>It pulls content from multiple sources and tries to group games together that are the same (not everyone writes release dates and games the same).</p>
-        <p>Jump to <a href="#{{ currentMonth }}">today's month</a> or <a href="#now">the closest date to today</a>.</p>
+        <p>Jump to <a href="#{{ currentMonth }}">today's month</a> or <a href="#now">the closest date to today</a>. Or stay up-to-date with <strong><a href="./games.ics">the generated calendar</a></strong>!</p>
         <p>Last updated on <time datetime="{{ lastUpdated }}"><strong>{{ lastUpdated }}</strong></time>. Aggregating content from {{ &utils.renderSourcesListFormat }}.</p>
         <p><small>* Metacritic and user scores are a mean value across all platforms.</small></p>
       </header>
