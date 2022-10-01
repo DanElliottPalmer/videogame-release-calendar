@@ -30,13 +30,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Mustache from 'mustache';
 import type { Platform } from '../Platform.js';
-import type { Calendar, Entry } from './calendar.js';
+import type { Calendar, Entry, ICalEntry } from './calendar.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const templatePath = path.resolve(__dirname, '../../static/template.mustache');
-const mustacheTemplate = fs.readFileSync(templatePath, 'utf8');
+const pageTemplate = path.resolve(__dirname, '../../static/template.mustache');
+const iCalTemplate = path.resolve(__dirname, '../../static/ical.mustache');
+const mustachePageTemplate = fs.readFileSync(pageTemplate, 'utf8');
+const mustacheICalTemplate = fs.readFileSync(iCalTemplate, 'utf8');
 const outputPath = path.resolve(__dirname, '../../');
 
 interface Source {
@@ -44,7 +46,15 @@ interface Source {
   url: string;
 }
 
-interface RenderOptions {
+interface ICalRenderOptions {
+  entries: Array<ICalEntry>;
+}
+
+interface ICalRenderData {
+  events: Array<ICalEntry>;
+}
+
+interface PageRenderOptions {
   availablePlatforms: Array<Platform>;
   calendar: Calendar;
   currentMonth: string;
@@ -52,32 +62,41 @@ interface RenderOptions {
   sources: Array<Source>;
 }
 
-interface RenderDataCheckbox {
+interface PageRenderDataCheckbox {
   label: string;
   value: string;
 }
 
-interface RenderData {
+interface PageRenderData {
   calendar: Calendar;
   currentMonth: string;
   lastUpdated: string;
-  platformCheckboxes: Array<RenderDataCheckbox>;
+  platformCheckboxes: Array<PageRenderDataCheckbox>;
   sources: Array<Source>;
   utils: Record<string, Function>;
 }
 
 type MustacheLambda = (this: Entry, text: string) => string;
 
+export function renderICalTemplate({ entries }: ICalRenderOptions) {
+  const data: ICalRenderData = {
+    events: entries,
+  };
+  const ical = Mustache.render(mustacheICalTemplate, data);
+  fs.mkdirSync(outputPath, { recursive: true });
+  fs.writeFileSync(path.join(outputPath, 'games.ics'), ical);
+}
+
 let isEntryNow: boolean = false;
 
-export function render({
+export function renderPageTemplate({
   availablePlatforms,
   calendar,
   currentMonth,
   lastUpdated,
   sources,
-}: RenderOptions) {
-  const data: RenderData = {
+}: PageRenderOptions) {
+  const data: PageRenderData = {
     calendar,
     currentMonth,
     lastUpdated: lastUpdated.toISOString(),
@@ -121,7 +140,7 @@ export function render({
           }
         };
       },
-      renderSourcesListFormat(this: RenderData): string {
+      renderSourcesListFormat(this: PageRenderData): string {
         const formatter = new Intl.ListFormat('en', {
           style: 'long',
           type: 'conjunction',
@@ -134,7 +153,7 @@ export function render({
       },
     },
   };
-  const html = Mustache.render(mustacheTemplate, data);
+  const html = Mustache.render(mustachePageTemplate, data);
 
   fs.mkdirSync(outputPath, { recursive: true });
   fs.writeFileSync(path.join(outputPath, 'index.html'), html);

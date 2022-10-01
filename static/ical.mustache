@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//danpalmer.club//videogame-release-calendar//EN
+{{# events }}
+BEGIN:VEVENT
+UID:{{ uid }}
+SEQUENCE:0
+DTSTAMP:{{ dtstamp }}
+DTSTART;VALUE=DATE:{{ date }}
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
+X-MICROSOFT-MSNCALENDAR-ALLDAYEVENT:TRUE
+SUMMARY:{{ summary }}
+END:VEVENT
+{{/ events }}
+END:VCALENDAR
