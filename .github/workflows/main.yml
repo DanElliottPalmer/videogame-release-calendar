@@ -1,7 +1,7 @@
 name: Build it up!
 on:
   schedule:
-    - cron:  '0 0 * * *'
+    - cron: '0 0 * * *'
   push:
     branches:
       - main
@@ -25,10 +25,10 @@ jobs:
 
       - name: Create Index.html
         run: |
-            node lib/index.js
+          node lib/index.js
 
-      - name: Commit Index.html
+      - name: Commit Files
         run: |
-          git add index.html
-          git commit -m "feat(index): update static index"
+          git add index.html games.ics
+          git commit -m "feat(files): update static index and games calendar"
           git push origin main
