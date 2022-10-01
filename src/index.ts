@@ -20,7 +20,7 @@ ps5.addKnownAs(['PS5', 'Playstation5', 'PlayStation 5']);
 const ps4 = new Platform('Playstation 4', 'PS4');
 ps4.addKnownAs(['PS4', 'Playstation4', 'PlayStation 4']);
 const psvr = new Platform('Playstation VR', 'PSVR');
-psvr.addKnownAs(['PSVR', 'PS VR']);
+psvr.addKnownAs(['PSVR', 'PS VR', 'PlayStation VR']);
 const ninSwitch = new Platform('Nintendo Switch', 'NS');
 ninSwitch.addKnownAs(['Switch', 'NS']);
 const xs = new Platform('Xbox Series X/S', 'XBS');
