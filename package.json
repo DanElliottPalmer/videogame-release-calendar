@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/jsdom": "^20.0.0",
     "@types/mustache": "^4.2.1",
-    "@types/node": "^18.11.0",
+    "@types/node": "^18.11.4",
     "jsdom": "^20.0.1",
     "mustache": "^4.2.0",
     "node-fetch": "^3.2.10",
