@@ -21,6 +21,8 @@ const ps4 = new Platform('Playstation 4', 'PS4');
 ps4.addKnownAs(['PS4', 'Playstation4', 'PlayStation 4']);
 const psvr = new Platform('Playstation VR', 'PSVR');
 psvr.addKnownAs(['PSVR', 'PS VR', 'PlayStation VR']);
+const psvr2 = new Platform('Playstation VR 2', 'PSVR2');
+psvr2.addKnownAs(['PSVR 2', 'PlayStation VR 2', 'PlayStation VR2']);
 const ninSwitch = new Platform('Nintendo Switch', 'NS');
 ninSwitch.addKnownAs(['Switch', 'NS']);
 const xs = new Platform('Xbox Series X/S', 'XBS');
@@ -46,6 +48,7 @@ manager.add([
   ps5,
   ps4,
   psvr,
+  psvr2,
   ninSwitch,
   xs,
   xbo,
