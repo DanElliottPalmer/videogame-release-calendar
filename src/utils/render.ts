@@ -107,7 +107,8 @@ export function renderPageTemplate({
     sources,
     utils: {
       entryDateHasPast(): MustacheLambda {
-        const today = new Date(Date.now());
+        // const today = new Date(Date.now());
+        const today = new Date(2022, 11, 31);
         return function (this: Entry, text: string): string {
           if (this.date < today) {
             return text;
@@ -130,7 +131,8 @@ export function renderPageTemplate({
           .join(' ');
       },
       entryIsNow(): MustacheLambda {
-        const today = new Date(Date.now());
+        // const today = new Date(Date.now());
+        const today = new Date(2022, 11, 31);
         return function (this: Entry, text: string): string {
           if (!isEntryNow && this.date >= today) {
             isEntryNow = true;
