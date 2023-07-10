@@ -18,7 +18,7 @@
     "jsdom": "^21.1.2",
     "mustache": "^4.2.0",
     "node-fetch": "^3.3.1",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "typescript": "^5.0.4"
   },
   "type": "module"
