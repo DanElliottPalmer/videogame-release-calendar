@@ -157,7 +157,7 @@ class WikipediaFetcher extends PageFetcher {
         const tableRows = this.parseHTMLTableToJSON(wikitable);
         for (const row of tableRows) {
           const entryDate = this.processDate(row.Day ?? "", row.Month ?? "");
-          const videoGameTitle = row.Title;
+          const videoGameTitle = row.Title?.replace(/\[\w\]$/gi, "");
           const videoGamePlatforms =
             row["Platform(s)"]?.split(", ").map((platform) =>
               PLATFORM_MANAGER.resolveByName(platform)
