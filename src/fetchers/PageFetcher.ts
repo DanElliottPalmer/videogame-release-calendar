@@ -7,6 +7,7 @@ import { isDefined } from "../utils.ts";
 export abstract class PageFetcher {
   protected readonly pageResponses: Map<string, string> = new Map();
   protected readonly pageUrls: Array<string> = [];
+  protected readonly name: string = "";
 
   protected parseResponse(url: string) {
     const maybeResponse = this.pageResponses.get(url);

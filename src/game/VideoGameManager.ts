@@ -5,7 +5,6 @@ const SIMILAR_GAME_THRESHOLD = 0.85;
 
 export class VideoGameManager {
   private readonly games: Map<VideoGame["id"], VideoGame> = new Map();
-  private readonly names: Map<string, VideoGame["id"]> = new Map();
 
   add(videoGame: Array<VideoGame> | VideoGame, merge?: boolean) {
     if (Array.isArray(videoGame)) {
@@ -23,21 +22,16 @@ export class VideoGameManager {
       }
 
       this.games.set(videoGame.id, videoGame);
-      videoGame._manager = this;
-      this.cacheAliases(videoGame.id);
     }
   }
 
-  cacheAliases(gameId: VideoGame["id"]) {
-    const game = this.games.get(gameId);
-    if (!isDefined(game)) return;
-    for (const gameAlias of game.getAliases()) {
-      this.names.set(gameAlias, gameId);
-    }
+  get length() {
+    return this.games.size;
   }
 
-  findGameByAlias(alias: string) {
-    const gameId = this.names.get(alias);
-    if (isDefined(gameId)) return this.games.get(gameId);
+  *[Symbol.iterator]() {
+    for (const [, game] of this.games) {
+      yield game;
+    }
   }
 }

@@ -1,5 +1,4 @@
 import type { Platform } from "../platform/Platform.ts";
-import type { VideoGameManager } from "../game/VideoGameManager.ts";
 import { isDefined } from "../utils.ts";
 import { Aliases } from "../Aliases.ts";
 import { PLATFORM_MANAGER } from "../platform/index.ts";
@@ -13,13 +12,9 @@ export class VideoGame {
   private readonly developers: Aliases = new Aliases();
   private readonly publishers: Aliases = new Aliases();
   private readonly releaseDates: Map<Platform["id"], Aliases> = new Map();
-  _manager: VideoGameManager | undefined;
 
   addAlias(names: string | Array<string>): void {
     this.aliases.addAlias(names);
-    if (isDefined(this._manager)) {
-      this._manager.cacheAliases(this.id);
-    }
   }
 
   isAlias(name: string): boolean {
@@ -30,7 +25,7 @@ export class VideoGame {
     return Array.from(this.aliases);
   }
 
-  addReleaseDate(platform: Platform, releaseDate: Date) {
+  addReleaseDate(platform: Platform, releaseDate: Date, count?: number) {
     if (!this.releaseDates.has(platform.id)) {
       this.releaseDates.set(platform.id, new Aliases());
     }
@@ -38,7 +33,7 @@ export class VideoGame {
     if (!isDefined(platformReleaseDates)) {
       throw new Error(`Unknown platform for release dates: ${platform}`);
     }
-    platformReleaseDates.addAlias(releaseDate.toISOString());
+    platformReleaseDates.addAlias(releaseDate.toISOString(), count);
   }
 
   getReleaseDates() {
@@ -76,8 +71,14 @@ export class VideoGame {
     for (const [platformId, releaseDates] of videoGame.getReleaseDates()) {
       const platform = PLATFORM_MANAGER.resolveById(platformId);
       if (!isDefined(platform)) continue;
-      for (const [releaseDateString] of releaseDates) {
-        this.addReleaseDate(platform, new Date(releaseDateString));
+      for (
+        const [releaseDateString, releaseDateCount] of releaseDates.getAliases()
+      ) {
+        this.addReleaseDate(
+          platform,
+          new Date(releaseDateString),
+          releaseDateCount,
+        );
       }
     }
   }

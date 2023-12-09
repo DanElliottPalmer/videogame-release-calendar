@@ -6,12 +6,12 @@ type AliasCount = number;
 export class Aliases {
   private readonly aliases = new Map<AliasName, AliasCount>();
 
-  addAlias(names: string | Array<string>): void {
+  addAlias(names: string | Array<string>, count?: number): void {
     if (Array.isArray(names)) {
-      names.forEach((name) => this.addAlias(name));
+      names.forEach((name) => this.addAlias(name, count));
     } else {
       const aliasCount = this.aliases.get(names) ?? 0;
-      this.aliases.set(names, aliasCount + 1);
+      this.aliases.set(names, aliasCount + (count ?? 1));
     }
   }
 
@@ -33,6 +33,10 @@ export class Aliases {
 
     return coefficients.reduce((acc, value) => acc + value, 0) /
       coefficients.length;
+  }
+
+  getAliases() {
+    return Array.from(this.aliases);
   }
 
   getTopAlias() {

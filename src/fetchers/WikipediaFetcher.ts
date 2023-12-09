@@ -26,6 +26,7 @@ class WikipediaFetcher extends PageFetcher {
   protected readonly pageUrls: Array<string> = [
     "https://en.wikipedia.org/wiki/2024_in_video_games",
   ];
+  protected readonly name = "WikipediaFetcher";
 
   protected getWikitables(doc: HTMLDocument) {
     const tables: Array<Element> = [];
