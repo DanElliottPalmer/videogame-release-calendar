@@ -14,7 +14,6 @@ class GameInformerFetcher extends PageFetcher {
   protected readonly name = "GameInformerFetcher";
 
   private processDate(dateString: string): Date | undefined {
-    const thisYear = new Date().getFullYear();
     const dateValue = Date.parse(`${dateString} 2024 00:00:00 UTC`);
     const date = new Date(dateValue);
     if (isNaN(date.valueOf())) return undefined;
@@ -51,14 +50,13 @@ class GameInformerFetcher extends PageFetcher {
 
   extract(): VideoGame[] {
     const videoGames: Array<VideoGame> = [];
-    for (const pageUrl of this.pageUrls) {
-      const doc = this.parseResponse(pageUrl);
+    for (const doc of this.iterateResponses()) {
       const calendarEntries = doc.querySelectorAll(".calendar_entry");
       for (const entry of calendarEntries) {
         let text: string | null = entry.textContent;
         if (text === null) continue;
         text = text.trim();
-        let matches: RegExpMatchArray | null = text.match(RE_ENTRY);
+        const matches: RegExpMatchArray | null = text.match(RE_ENTRY);
         if (matches === null) continue;
         const [, gameName, gamePlatforms, gameReleaseDate] = matches;
         const videoGameTitle = gameName.trim();
