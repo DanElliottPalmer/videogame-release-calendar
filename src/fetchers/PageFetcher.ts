@@ -21,6 +21,12 @@ export abstract class PageFetcher {
     return doc;
   }
 
+  protected *iterateResponses() {
+    for (const pageUrl of this.pageUrls) {
+      yield this.parseResponse(pageUrl);
+    }
+  }
+
   async fetch() {
     for (const pageUrl of this.pageUrls) {
       console.debug(`Fetching url: ${pageUrl}`);
