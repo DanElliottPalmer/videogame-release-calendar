@@ -151,8 +151,7 @@ class WikipediaFetcher extends PageFetcher {
 
   extract() {
     const videoGames: Array<VideoGame> = [];
-    for (const pageUrl of this.pageUrls) {
-      const doc = this.parseResponse(pageUrl);
+    for (const doc of this.iterateResponses()) {
       const wikitables = this.getWikitables(doc);
       for (const wikitable of wikitables) {
         const tableRows = this.parseHTMLTableToJSON(wikitable);
