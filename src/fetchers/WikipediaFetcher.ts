@@ -95,11 +95,12 @@ class WikipediaFetcher extends PageFetcher {
           const maybeTd = tds[cellIndex];
 
           if (!isDefined(maybeTd)) {
-            throw new RangeError(
+            console.error(
               `The index must be between 0 and ${
                 tds.length - 1
               } - ${cellIndex}`,
             );
+            return "";
           }
 
           const td = maybeTd as Element;

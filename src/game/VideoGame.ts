@@ -1,9 +1,26 @@
-import type { Platform } from "../platform/Platform.ts";
-import { isDefined } from "../utils.ts";
+import type { Platform, PlatformJson } from "../platform/Platform.ts";
+import { generateDeterministicId, isDefined } from "../utils.ts";
 import { Aliases } from "../Aliases.ts";
 import { PLATFORM_MANAGER } from "../platform/index.ts";
 
 let VIDEO_GAME_ID = 0;
+
+interface VideoGameJson {
+  developer: string | undefined;
+  name: string | undefined;
+  publisher: string | undefined;
+  releaseDates: Record<Platform["name"], Date>;
+  uid: string | undefined;
+}
+
+export interface VideoGameCalendarEntry {
+  developer: string | undefined;
+  name: string | undefined;
+  platforms: Array<PlatformJson>;
+  publisher: string | undefined;
+  releaseDate: Date;
+  uid: string | undefined;
+}
 
 export class VideoGame {
   readonly id: number = VIDEO_GAME_ID++;
@@ -12,6 +29,17 @@ export class VideoGame {
   private readonly developers: Aliases = new Aliases();
   private readonly publishers: Aliases = new Aliases();
   private readonly releaseDates: Map<Platform["id"], Aliases> = new Map();
+
+  #uid: string | undefined = undefined;
+
+  async generateUID() {
+    if (this.name) {
+      this.#uid = await generateDeterministicId(this.name);
+    } else {
+      this.#uid = undefined;
+    }
+    return this.#uid;
+  }
 
   addAlias(names: string | Array<string>): void {
     this.aliases.addAlias(names);
@@ -95,25 +123,68 @@ export class VideoGame {
     return this.publishers.getTopAlias();
   }
 
-  get [Symbol.toStringTag]() {
+  get uid() {
+    if (!isDefined(this.#uid)) {
+      console.warn(`uid is not generated for ${this.name}`);
+    }
+    return this.#uid;
+  }
+
+  toString() {
     return this.name;
   }
 
-  toJSON() {
+  toJSON(): VideoGameJson | null {
+    const name = this.name;
+    if (!name) return null;
     return {
       developer: this.developer,
-      name: this.name,
+      name,
       publisher: this.publisher,
-      releaseDates: Array.from(this.releaseDates).reduce(
+      releaseDates: this.getReleaseDates().reduce(
         (acc, currentValue) => {
           const platform = PLATFORM_MANAGER.resolveById(currentValue[0]);
-          if (platform) {
-            acc[platform.name] = new Date(currentValue[1].getTopAlias());
+          const dateString = currentValue[1].getTopAlias();
+          if (isDefined(platform) && isDefined(dateString)) {
+            acc[platform.name] = new Date(dateString);
           }
           return acc;
         },
-        {} as { [key: string]: Date },
+        {} as Record<Platform["name"], Date>,
       ),
+      uid: this.uid,
     };
+  }
+
+  toCalendarEntries(): Array<VideoGameCalendarEntry> {
+    const datesToPlatformId = new Map<string, Array<Platform["id"]>>();
+    for (const [platformId, datesAlias] of this.getReleaseDates()) {
+      const dateString = datesAlias.getTopAlias();
+      if (isDefined(dateString)) {
+        if (!datesToPlatformId.has(dateString)) {
+          datesToPlatformId.set(dateString, []);
+        }
+        datesToPlatformId.get(dateString)?.push(platformId);
+      }
+    }
+
+    if (datesToPlatformId.size === 0) return [];
+
+    const baseVideoGameJSON = {
+      developer: this.developer,
+      name: this.name,
+      publisher: this.publisher,
+      uid: this.uid,
+    };
+    return Array.from(datesToPlatformId).map((entry) => {
+      const [dateString, platformIds] = entry;
+      return {
+        ...baseVideoGameJSON,
+        platforms: platformIds.map((platformId) =>
+          PLATFORM_MANAGER.resolveById(platformId)?.toJSON()
+        ).filter(isDefined),
+        releaseDate: new Date(dateString),
+      };
+    });
   }
 }

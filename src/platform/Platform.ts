@@ -2,6 +2,11 @@ import { Aliases } from "../Aliases.ts";
 
 let PLATFORM_ID = 0;
 
+export interface PlatformJson {
+  name: string;
+  shortName: string;
+}
+
 export class Platform {
   readonly id: number = PLATFORM_ID++;
   /**
@@ -32,13 +37,12 @@ export class Platform {
     return this.aliases.isAlias(name);
   }
 
-  get [Symbol.toStringTag]() {
+  toString() {
     return this.name;
   }
 
-  toJSON() {
+  toJSON(): PlatformJson {
     return {
-      aliases: Array.from(this.aliases),
       name: this.name,
       shortName: this.shortName,
     };

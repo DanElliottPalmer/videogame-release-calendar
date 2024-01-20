@@ -1,4 +1,3 @@
-import { isDefined } from "../utils.ts";
 import type { VideoGame } from "./VideoGame.ts";
 
 const SIMILAR_GAME_THRESHOLD = 0.85;

@@ -42,7 +42,7 @@ class GameInformerFetcher extends PageFetcher {
       if (isDefined(platform)) {
         platforms.push(platform);
       } else {
-        console.log(`${this.name} - Unknown platform: "${str}"`);
+        console.warn(`${this.name} - Unknown platform: "${str}"`);
       }
     });
     return platforms;

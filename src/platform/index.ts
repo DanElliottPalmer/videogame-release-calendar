@@ -21,7 +21,7 @@ const android = new Platform("Android", "Droid");
 android.addAlias(["Droid"]);
 const ios = new Platform("iOS", "iOS");
 const oculusQuest = new Platform("Oculus Quest", "OQ");
-oculusQuest.addAlias(["Quest 2", "Quest"]);
+oculusQuest.addAlias(["Quest 3", "Quest 2", "Quest"]);
 const windows = new Platform("Microsoft Windows", "Win");
 windows.addAlias(["Win", "PC"]);
 const linux = new Platform("Linux", "Lin");

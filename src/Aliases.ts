@@ -40,6 +40,7 @@ export class Aliases {
   }
 
   getTopAlias() {
+    if (this.aliases.size === 0) return;
     const aliasCounts = Array.from(this.aliases).sort((a, b) => a[1] - b[1]);
     return aliasCounts[0][0];
   }
@@ -76,5 +77,9 @@ export class Aliases {
     for (const [alias] of this.aliases) {
       yield alias;
     }
+  }
+
+  toString() {
+    return this.getTopAlias() ?? "";
   }
 }

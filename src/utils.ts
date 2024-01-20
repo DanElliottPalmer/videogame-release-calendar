@@ -1,4 +1,7 @@
+import { v5 } from "https://deno.land/std@0.207.0/uuid/mod.ts";
 import { Element } from "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts";
+
+const TEXT_ENCODER = new TextEncoder();
 
 export function isDefined<T>(value: T): value is NonNullable<T> {
   return value !== undefined && value !== null;
@@ -84,5 +87,12 @@ export function diceCoefficient(str1: string, str2: string): number {
   const bigrams2 = getBigrams(str2);
   return (
     (2 * intersect(bigrams1, bigrams2).size) / (bigrams1.size + bigrams2.size)
+  );
+}
+
+export async function generateDeterministicId(str: string): Promise<string> {
+  return await v5.generate(
+    "00000000-0000-0000-0000-000000000000",
+    TEXT_ENCODER.encode(str),
   );
 }

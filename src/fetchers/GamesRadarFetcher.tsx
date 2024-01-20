@@ -43,7 +43,7 @@ class GamesRadarFetcher extends PageFetcher {
       if (platform) {
         platforms.push(platform);
       } else {
-        console.log(`${this.name} - Unknown platform: "${str}"`);
+        console.warn(`${this.name} - Unknown platform: "${str}"`);
       }
     });
     return platforms;
