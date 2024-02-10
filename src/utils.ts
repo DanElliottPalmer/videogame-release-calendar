@@ -96,3 +96,18 @@ export async function generateDeterministicId(str: string): Promise<string> {
     TEXT_ENCODER.encode(str),
   );
 }
+
+export function* chunk<Item>(
+  iter: Iterable<Item>,
+  chunkSize: number,
+): Array<Array<Item>> {
+  let chunk = [];
+  for (const v of iter) {
+    chunk.push(v);
+    if (chunk.length === chunkSize) {
+      yield chunk;
+      chunk = [];
+    }
+  }
+  if (chunk.length) yield chunk;
+}

@@ -1,25 +1,27 @@
-import type { PartialTemplate } from "./PartialTemplate.ts"
+import type { PartialTemplate } from "./PartialTemplate.ts";
 
 class PartialsMap {
+  #templates: Map<PartialTemplate["name"], PartialTemplate> = new Map();
 
-  #templates: Map<PartialTemplate['name'], PartialTemplate> = new Map()
-
-  addTemplate(template: PartialTemplate){
-    this.#templates.set(template.name, template)
+  addTemplate(template: PartialTemplate) {
+    this.#templates.set(template.name, template);
   }
 
-  getTemplate(templateName: string){
-    return this.#templates.get(templateName)
+  clear() {
+    this.#templates.clear();
   }
 
-  toMarkupMap(): Record<PartialTemplate['name'], PartialTemplate['markup']> {
-    return Object.entries(this.#templates).reduce((acc, current) => {
-      const [name, template] = current
-      acc[name] = template.markup
-      return acc
-    }, {} as Record<PartialTemplate['name'], PartialTemplate['markup']>)
+  getTemplate(templateName: string) {
+    return this.#templates.get(templateName);
   }
 
+  toMarkupMap(): Record<PartialTemplate["name"], PartialTemplate["markup"]> {
+    return Array.from(this.#templates.entries()).reduce((acc, current) => {
+      const [name, template] = current;
+      acc[name] = template.markup;
+      return acc;
+    }, {} as Record<PartialTemplate["name"], PartialTemplate["markup"]>);
+  }
 }
 
-export const PARTIALS_MAP = new PartialsMap()
+export const PARTIALS_MAP = new PartialsMap();
