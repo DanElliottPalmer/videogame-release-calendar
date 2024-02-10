@@ -1,28 +1,26 @@
-import type { Platform } from '../Platform.js';
-import type { PlatformManager } from '../PlatformManager.js';
-import { JSDOM } from 'jsdom';
-import { VideoGame } from '../VideoGame.js';
-import { PageFetcher } from './PageFetcher.js';
+import { VideoGame } from "../game/VideoGame.ts";
+import { Platform } from "../platform/Platform.ts";
+import { PLATFORM_MANAGER } from "../platform/index.ts";
+import { convertRomanNumerals, isDefined, isNonEmptyArray } from "../utils.ts";
+import { PageFetcher } from "./PageFetcher.ts";
 
-export class GameInformerFetcher extends PageFetcher {
-  public readonly name: string = 'GameInformer';
-  public readonly homepageUrl: string = 'https://www.gameinformer.com/';
+const RE_ENTRY =
+  /(.+)\s+(\(.+\))\s+[–\-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
 
-  protected urls: Array<string> = ['https://www.gameinformer.com/2022'];
+class GameInformerFetcher extends PageFetcher {
+  protected readonly pageUrls: Array<string> = [
+    "https://www.gameinformer.com/2024",
+  ];
+  protected readonly name = "GameInformerFetcher";
 
   private processDate(dateString: string): Date | undefined {
-    const thisYear = new Date().getFullYear();
-    // TODO: regions? tmz?
-    const dateValue = Date.parse(`${dateString} ${thisYear} 00:00:00 UTC`);
+    const dateValue = Date.parse(`${dateString} 2024 00:00:00 UTC`);
     const date = new Date(dateValue);
     if (isNaN(date.valueOf())) return undefined;
     return date;
   }
 
-  private processPlatforms(
-    manager: PlatformManager,
-    platformString: string,
-  ): Array<Platform> {
+  private processPlatforms(platformString: string): Array<Platform> {
     // Example: (PC, PS5, XSX, PS4)
     // Trim off '(' and  ')'
     const tidyString: string = platformString.substring(
@@ -31,56 +29,61 @@ export class GameInformerFetcher extends PageFetcher {
     );
     // Split into individual items
     const platformStrings: Array<string> = tidyString
-      .split(', ')
+      .split(", ")
       .flatMap((str) => {
-        if (str === 'Xbox Series X/S')
-          return ['Xbox Series X', 'Xbox Series S'];
+        if (str === "Xbox Series X/S") {
+          return ["Xbox Series X", "Xbox Series S"];
+        }
         return str;
       });
     const platforms: Array<Platform> = [];
     platformStrings.forEach((str) => {
-      const platform = manager.resolve(str);
-      if (platform) {
+      const platform = PLATFORM_MANAGER.resolveByName(str);
+      if (isDefined(platform)) {
         platforms.push(platform);
       } else {
-        console.log(`${this.name} - Unknown platform: "${str}"`);
+        console.warn(`${this.name} - Unknown platform: "${str}"`);
       }
     });
     return platforms;
   }
 
-  public extract(manager: PlatformManager): Array<VideoGame> {
-    this.games.length = 0;
-
-    for (const page of this.fetchedPages) {
-      const dom = new JSDOM(page.body);
-      // Find all entries - .calendar_entry
-      const entries = dom.window.document.querySelectorAll('.calendar_entry');
-      const re =
-        /(.+)\s+(\(.+\))\s+[–\-]\s+((?:january|february|march|april|may|june|july|august|september|october|november|december) [\d]+)/i;
-      entries.forEach((entry: Element) => {
+  extract(): VideoGame[] {
+    const videoGames: Array<VideoGame> = [];
+    for (const doc of this.iterateResponses()) {
+      const calendarEntries = doc.querySelectorAll(".calendar_entry");
+      for (const entry of calendarEntries) {
         let text: string | null = entry.textContent;
-        if (text === null) return;
+        if (text === null) continue;
         text = text.trim();
-        let matches: RegExpMatchArray | null = text.match(re);
-        if (matches === null) return;
+        const matches: RegExpMatchArray | null = text.match(RE_ENTRY);
+        if (matches === null) continue;
         const [, gameName, gamePlatforms, gameReleaseDate] = matches;
-        const name = (gameName as string).trim();
-        const platforms = this.processPlatforms(
-          manager,
-          gamePlatforms as string,
-        );
-        const releaseDate = this.processDate(gameReleaseDate as string);
-        if (name && platforms.length > 0 && releaseDate) {
-          const videoGame = new VideoGame(name);
-          platforms.forEach((platform) => {
-            videoGame.addReleaseDate(platform, releaseDate);
-          });
-          this.games.push(videoGame);
-        }
-      });
-    }
+        const videoGameTitle = gameName.trim();
+        const videoGamePlatforms = this.processPlatforms(gamePlatforms);
+        const entryDate = this.processDate(gameReleaseDate);
 
-    return this.games;
+        if (
+          isDefined(name) && isNonEmptyArray(videoGamePlatforms) &&
+          isDefined(entryDate)
+        ) {
+          const videoGame = new VideoGame();
+          videoGame.addAlias(videoGameTitle);
+          const alternativeRomanNumeralTitle = convertRomanNumerals(
+            videoGameTitle,
+          );
+          if (videoGameTitle !== alternativeRomanNumeralTitle) {
+            videoGame.addAlias(alternativeRomanNumeralTitle);
+          }
+          videoGamePlatforms.forEach((platform) =>
+            videoGame.addReleaseDate(platform, entryDate)
+          );
+          videoGames.push(videoGame);
+        }
+      }
+    }
+    return videoGames;
   }
 }
+
+export const fetcher = new GameInformerFetcher();

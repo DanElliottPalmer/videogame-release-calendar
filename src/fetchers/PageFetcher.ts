@@ -1,52 +1,46 @@
-import fetch from 'node-fetch';
-import type { PlatformManager } from '../PlatformManager.js';
-import type { VideoGame } from '../VideoGame.js';
-
-export interface WebPage {
-  body: string;
-  url: string;
-}
+import { VideoGame } from "../game/VideoGame.ts";
+import {
+  DOMParser,
+} from "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts";
+import { isDefined } from "../utils.ts";
 
 export abstract class PageFetcher {
-  public readonly name: string;
-  public readonly homepageUrl: string;
+  protected readonly pageResponses: Map<string, string> = new Map();
+  protected readonly pageUrls: Array<string> = [];
+  protected readonly name: string = "";
 
-  protected games: Array<VideoGame> = [];
-  protected fetchQueue: Array<string> = [];
-  protected fetchedPages: Array<WebPage> = [];
-  protected urls: Array<string> = [];
-
-  protected async prefetch(url: string): Promise<string> {
-    return url;
-  }
-
-  protected async fetch(url: string): Promise<WebPage> {
-    const response = await fetch(url);
-    const body = await response.text();
-    const page: WebPage = { body, url };
-    return page;
-  }
-
-  protected async postfetch(page: WebPage): Promise<WebPage> {
-    return page;
-  }
-
-  public abstract extract(manager: PlatformManager): Array<VideoGame>;
-
-  public async request(): Promise<Array<WebPage>> {
-    this.fetchedPages.length = 0;
-
-    this.fetchQueue = this.urls.slice(0);
-    let page: WebPage;
-    let url: string;
-    while (this.fetchQueue.length > 0) {
-      url = this.fetchQueue.shift() as string;
-      url = await this.prefetch(url);
-      page = await this.fetch(url);
-      page = await this.postfetch(page);
-      this.fetchedPages.push(page);
+  protected parseResponse(url: string) {
+    const maybeResponse = this.pageResponses.get(url);
+    if (!isDefined(maybeResponse)) {
+      throw new Error(`Unknown url: ${url}`);
     }
+    const doc = new DOMParser().parseFromString(maybeResponse, "text/html");
+    if (!isDefined(doc)) {
+      throw new Error(`DOM document is null: ${url}`);
+    }
+    return doc;
+  }
 
-    return this.fetchedPages;
+  protected *iterateResponses() {
+    for (const pageUrl of this.pageUrls) {
+      yield this.parseResponse(pageUrl);
+    }
+  }
+
+  async fetch() {
+    for (const pageUrl of this.pageUrls) {
+      console.debug(`Fetching url: ${pageUrl}`);
+      const response = await fetch(pageUrl);
+      if (response.ok) {
+        console.debug(`Success loading url: ${pageUrl} - ${response.status}`);
+        this.pageResponses.set(pageUrl, await response.text());
+      } else {
+        console.error(`Failure to load url: ${pageUrl} - ${response.status}`);
+      }
+    }
+  }
+
+  extract(): Array<VideoGame> {
+    return [];
   }
 }

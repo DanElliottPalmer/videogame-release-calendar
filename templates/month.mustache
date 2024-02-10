@@ -1,0 +1,49 @@
+---
+
+---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Games</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  {{> svg-spritesheet }}
+  <main>
+    <h1>Games</h1>
+    <div class="two-column-layout">
+      <div class="two-column-layout__calendar">
+        {{# calendar }}
+          {{> calendar-component }}
+        {{/ calendar }}
+      </div>
+      <div class="two-column-layout__entries">
+
+
+
+        <section class="month-game-entries">
+          <h2 class="month-game-entries__title" id="january">{{ calendar.text }}</h2>
+
+          {{# sections }}
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="{{ id }}">{{ title }}</h3>
+              <ul class="day-game-entry__list">
+                {{# entries }}
+                <li class="day-game-entry__list-item">
+                  {{> video-game-card-component }}
+                </li>
+                {{/ entries }}
+              </ul>
+            </section>
+          {{/ sections }}
+          {{^ sections }}
+            <p>Oop no games?</p>
+          {{/ sections }}
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

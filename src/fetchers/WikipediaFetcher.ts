@@ -1,130 +1,194 @@
-import type { Platform } from '../Platform.js';
-import type { PlatformManager } from '../PlatformManager.js';
-import { JSDOM } from 'jsdom';
-import { VideoGame } from '../VideoGame.js';
-import { WebPage, PageFetcher } from './PageFetcher.js';
-import { findNextSiblingMatches } from './utils.js';
+import { PLATFORM_MANAGER } from "../platform/index.ts";
+import { VideoGame } from "../game/VideoGame.ts";
+import {
+  Element,
+  HTMLDocument,
+} from "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts";
+import {
+  convertRomanNumerals,
+  isDefined,
+  isNonEmptyArray,
+  nextElementSiblingMatches,
+} from "../utils.ts";
+import { PageFetcher } from "./PageFetcher.ts";
 
-export class WikipediaFetcher extends PageFetcher {
-  public readonly name: string = 'Wikipedia';
-  public readonly homepageUrl: string = 'https://en.wikipedia.org/';
+type TableHeaderCell =
+  | "Month"
+  | "Day"
+  | "Title"
+  | "Platform(s)"
+  | "Genre(s)"
+  | "Developer(s)"
+  | "Publisher(s)"
+  | "Ref.";
 
-  protected urls: Array<string> = [
-    'https://en.wikipedia.org/wiki/2022_in_video_games#Series_with_new_entries',
+class WikipediaFetcher extends PageFetcher {
+  protected readonly pageUrls: Array<string> = [
+    "https://en.wikipedia.org/wiki/2024_in_video_games",
   ];
+  protected readonly name = "WikipediaFetcher";
 
-  private processDate(dateString: string): Date | undefined {
-    const thisYear = new Date().getFullYear();
-    // TODO: regions? tmz?
-    const dateValue = Date.parse(`${dateString} ${thisYear} 00:00:00 UTC`);
-    const date = new Date(dateValue);
-    if (isNaN(date.valueOf())) return undefined;
-    return date;
-  }
-
-  private processPlatforms(
-    manager: PlatformManager,
-    platformString: string,
-  ): Array<Platform> {
-    // Example: Win, NS, PS4, PS5
-    // Split into individual items
-    const platformStrings: Array<string> = platformString.split(', ');
-    const platforms: Array<Platform> = [];
-    platformStrings.forEach((str) => {
-      const platform = manager.resolve(str);
-      if (platform) {
-        platforms.push(platform);
-      } else {
-        console.log(`${this.name} - Unknown platform: "${str}"`);
-      }
-    });
-    return platforms;
-  }
-
-  protected getWikitables(page: WebPage): Array<Element> {
-    const dom = new JSDOM(page.body);
+  protected getWikitables(doc: HTMLDocument) {
     const tables: Array<Element> = [];
-    let node: HTMLElement | Element | null | undefined =
-      dom.window.document.querySelector('h3 #January–March')?.parentElement;
 
-    if (node) {
+    let node: Element | null | undefined = doc.querySelector(
+      "h3 #January–March",
+    )?.parentElement;
+    if (isDefined(node)) {
       while (true) {
-        node = findNextSiblingMatches(node, 'table.wikitable, h3');
+        node = nextElementSiblingMatches(node, "table.wikitable, h3");
         if (node === undefined) break;
-        if (node.querySelector(':scope #Unscheduled_releases')) break;
-        if (node.tagName === 'H3') continue;
-        if (node.tagName === 'TABLE') tables.push(node);
+        if (node.querySelector(":scope #Unscheduled_releases")) break;
+        if (node.tagName === "H3") continue;
+        if (node.tagName === "TABLE") tables.push(node);
       }
     }
+
     return tables;
   }
 
-  protected getCellsFromRow(row: Element): Array<string> {
-    return Array.from(row.querySelectorAll('td')).map((cell: Element) => {
-      if (!cell) return '';
-      const italicText = cell.querySelector('i');
-      if (!italicText) return '';
-      let cellValue: string;
-      if (italicText) {
-        cellValue = italicText.textContent as string;
-      } else {
-        cellValue = cell.textContent as string;
+  protected parseHTMLTableToJSON(
+    table: Element,
+  ): Array<{ [key in TableHeaderCell]?: string }> {
+    const rows: Array<Array<string>> = [];
+    const tableHeaderCells: Array<string> = [];
+    let rowspans: Array<{ amount: number; value: string } | null>;
+    let colspans: Array<string | null>;
+
+    const trs = table.querySelectorAll("tr");
+    trs.forEach((tr, rowIndex) => {
+      // First row is the header with the keys of the properties
+      if (rowIndex === 0) {
+        const ths = (tr as Element).querySelectorAll("th");
+        tableHeaderCells.push(
+          ...Array.from(ths).map((th) => (th as Element).innerText.trim()),
+        );
+        rowspans = new Array(tableHeaderCells.length);
+        colspans = new Array(tableHeaderCells.length);
+        return;
       }
-      return cellValue.trim();
+
+      const tds = (tr as Element).querySelectorAll("td");
+      let cellOffset = 0;
+
+      const cells = new Array(tableHeaderCells.length).fill(null).map(
+        (_, index) => {
+          // Check if there are any rowspan values first
+          const rowspan = rowspans[index];
+          if (isDefined(rowspan)) {
+            cellOffset--;
+            rowspan.amount--;
+            if (rowspan.amount === 0) rowspans[index] = null;
+            return rowspan.value;
+          }
+
+          // Check if there are any colspans
+          const colspan = colspans[index];
+          if (isDefined(colspan)) {
+            cellOffset--;
+            colspans[index] = null;
+            return colspan;
+          }
+
+          // Calculate our real cell index using the offset.
+          const cellIndex = index + cellOffset;
+          const maybeTd = tds[cellIndex];
+
+          if (!isDefined(maybeTd)) {
+            console.error(
+              `The index must be between 0 and ${
+                tds.length - 1
+              } - ${cellIndex}`,
+            );
+            return "";
+          }
+
+          const td = maybeTd as Element;
+          const cellValue = td.innerText.trim();
+
+          // Set rowspan if it exists
+          if (td.hasAttribute("rowspan")) {
+            rowspans[index] = {
+              // Minus one from the value as we are already on the cell that is
+              // using the value.
+              amount: parseInt(td.getAttribute("rowspan") ?? "0", 10) - 1,
+              value: cellValue,
+            };
+          }
+
+          if (td.hasAttribute("colspan")) {
+            const colspanValue = parseInt(
+              td.getAttribute("colspan") ?? "0",
+              10,
+            );
+            for (let j = index + 1; j <= index + colspanValue; j++) {
+              colspans[j] = cellValue;
+            }
+          }
+
+          return cellValue;
+        },
+      );
+      rows.push(cells);
+    });
+
+    return rows.map((row) => {
+      const accumulator: { [key in TableHeaderCell]?: string } = {};
+      return row.reduce((previousValue, currentValue, index) => {
+        const headerCell = tableHeaderCells[index] as TableHeaderCell;
+        previousValue[headerCell] = currentValue;
+        return previousValue;
+      }, accumulator);
     });
   }
 
-  public extract(manager: PlatformManager): Array<VideoGame> {
-    this.games.length = 0;
+  protected processDate(day: string, month: string): Date | undefined {
+    const dayAsNumber = parseInt(day, 10);
+    if (isNaN(dayAsNumber)) return;
+    const fullDate = `${dayAsNumber} ${month} 2024 00:00:00 UTC`;
+    const date = new Date(fullDate);
+    return isNaN(date.getTime()) ? undefined : date;
+  }
 
-    for (const page of this.fetchedPages) {
-      const tables = this.getWikitables(page);
-      tables.forEach((table: Element) => {
-        const rows = table.querySelectorAll('tr');
-        let month: string;
-        let dateNumber: number;
-        let gameName: string;
-        rows.forEach((row: Element, index: number) => {
-          // Ignore first row as it is header columns
-          if (index === 0) return;
-          let cells = this.getCellsFromRow(row);
-          let gamePlatforms: string;
-          switch (cells.length) {
-            case 8:
-              month = cells[0] as string;
-              dateNumber = parseInt(cells[1] as string, 10);
-              gameName = cells[2] as string;
-              gamePlatforms = cells[3] as string;
-              break;
-            case 7:
-              dateNumber = parseInt(cells[0] as string, 10);
-              gameName = cells[1] as string;
-              gamePlatforms = cells[2] as string;
-              break;
-            default:
-              gameName = cells[0] as string;
-              gamePlatforms = cells[1] as string;
-              break;
+  extract() {
+    const videoGames: Array<VideoGame> = [];
+    for (const doc of this.iterateResponses()) {
+      const wikitables = this.getWikitables(doc);
+      for (const wikitable of wikitables) {
+        const tableRows = this.parseHTMLTableToJSON(wikitable);
+        for (const row of tableRows) {
+          const entryDate = this.processDate(row.Day ?? "", row.Month ?? "");
+          const videoGameTitle = row.Title?.replace(/\[\w\]$/gi, "");
+          const videoGamePlatforms =
+            row["Platform(s)"]?.split(", ").map((platform) =>
+              PLATFORM_MANAGER.resolveByName(platform)
+            ).filter(isDefined) ?? [];
+          if (
+            !isDefined(entryDate) || !isDefined(videoGameTitle) ||
+            !isNonEmptyArray(videoGamePlatforms)
+          ) continue;
+          const videoGame = new VideoGame();
+          videoGame.addAlias(videoGameTitle);
+          const alternativeRomanNumeralTitle = convertRomanNumerals(
+            videoGameTitle,
+          );
+          if (videoGameTitle !== alternativeRomanNumeralTitle) {
+            videoGame.addAlias(alternativeRomanNumeralTitle);
           }
+          const developer = row["Developer(s)"]?.trim() ?? "";
+          if (developer) videoGame.addDeveloper(developer);
+          const publisher = row["Publisher(s)"]?.trim() ?? "";
+          if (publisher) videoGame.addPublisher(publisher);
 
-          // If we have NaN, it means we got a TBA. Skip the row.
-          if (isNaN(dateNumber)) return;
-
-          const name = gameName.trim();
-          const platforms = this.processPlatforms(manager, gamePlatforms);
-          const releaseDate = this.processDate(`${dateNumber} ${month}`);
-
-          if (name && platforms.length > 0 && releaseDate) {
-            const videoGame = new VideoGame(name);
-            platforms.forEach((platform) => {
-              videoGame.addReleaseDate(platform, releaseDate);
-            });
-            this.games.push(videoGame);
-          }
-        });
-      });
+          videoGamePlatforms.forEach((platform) =>
+            videoGame.addReleaseDate(platform, entryDate)
+          );
+          videoGames.push(videoGame);
+        }
+      }
     }
-
-    return this.games;
+    return videoGames;
   }
 }
+
+export const fetcher = new WikipediaFetcher();

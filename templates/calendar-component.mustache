@@ -1,0 +1,58 @@
+<section class="calendar">
+  <header class="calendar-header">
+    <nav class="calendar-header__nav">
+      <span class="calendar-header__nav-item">
+        {{# previousMonth }}
+        {{# url }}<a href="{{ url }}">{{/ url }}
+          <time datetime="2024-11">{{ text }}</time>
+        {{# url }}</a>{{/ url }}
+        {{/ previousMonth }}
+      </span>
+      <span class="calendar-header__nav-item" aria-current="page">
+        <time datetime="2024-12">{{ text }}</time>
+      </span>
+      <span class="calendar-header__nav-item">
+        {{# nextMonth }}
+        {{# url }}<a href="{{ url }}">{{/ url }}
+          <time datetime="2024-11">{{ text }}</time>
+        {{# url }}</a>{{/ url }}
+        {{/ nextMonth }}
+      </span>
+    </nav>
+  </header>
+  <div class="calendar-dates">
+    <table class="calendar-dates__table">
+      <thead class="calendar-dates__days">
+        <tr>
+          <th class="calendar-dates__day"><abbr title="Monday" aria-label="Monday">Mon</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Tuesday" aria-label="Tuesday">Tue</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Wednesday" aria-label="Wednesday">Wed</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Thursday" aria-label="Thursday">Thur</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Friday" aria-label="Friday">Fri</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Saturday" aria-label="Saturday">Sat</abbr></th>
+          <th class="calendar-dates__day"><abbr title="Sunday" aria-label="Sunday">Sun</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{# dates }}
+          <tr>
+            {{# . }}
+              <td class="calendar-dates__date">
+                {{# url }}<a href="{{ url }}">{{/ url }}
+                  <span class="
+                    calendar-dates__mark
+                    {{# isToday }}calendar-dates__mark--is-today{{/ isToday}}
+                    {{# hasGames }}calendar-dates__mark--has-games{{/ hasGames}}
+                    {{^ isCurrentMonth }}calendar-dates__date--ignore{{/ isCurrentMonth}}
+                  ">
+                    <time>{{ text }}</time>
+                  </span>
+                {{# url }}</a>{{/ url }}
+              </td>
+            {{/ . }}
+          </tr>
+        {{/ dates }}
+      </tbody>
+    </table>
+  </div>
+</section>
