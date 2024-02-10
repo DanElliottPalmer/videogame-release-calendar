@@ -11,12 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
+
+      - name: Fetch JSON
+        run: |
+          deno task fetch
+
+      - name: Render templates
+        run: |
+          deno task render
 
 #       - name: Setup Git
 #         run: |
