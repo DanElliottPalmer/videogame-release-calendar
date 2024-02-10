@@ -145,7 +145,7 @@ class WikipediaFetcher extends PageFetcher {
   protected processDate(day: string, month: string): Date | undefined {
     const dayAsNumber = parseInt(day, 10);
     if (isNaN(dayAsNumber)) return;
-    const fullDate = `${dayAsNumber} ${month} 2024`;
+    const fullDate = `${dayAsNumber} ${month} 2024 00:00:00 UTC`;
     const date = new Date(fullDate);
     return isNaN(date.getTime()) ? undefined : date;
   }
