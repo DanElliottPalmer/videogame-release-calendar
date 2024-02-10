@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Games</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
+    <defs>
+      <g id="controller">
+        <path d="M5.95 6.9c0-.51.31-.83.84-.83h1.8V4.32c0-.52.3-.83.8-.83s.8.3.8.83v1.75h1.7c.56 0 .9.32.9.82 0 .53-.34.85-.9.85h-1.7V9.5c0 .52-.3.84-.8.84s-.8-.32-.8-.84V7.74H6.8c-.53 0-.84-.32-.84-.85Zm14.41-.1c-.8 0-1.47-.66-1.47-1.47 0-.82.67-1.47 1.47-1.47a1.47 1.47 0 1 1 0 2.94ZM17.4 9.78c-.8 0-1.47-.66-1.47-1.47 0-.81.67-1.47 1.47-1.47.81 0 1.48.66 1.48 1.47 0 .81-.67 1.47-1.48 1.47ZM3.72 17.7c1.34 0 2.26-.5 3.08-1.5l1.76-2.15c.26-.3.55-.45.84-.45h9.39c.3 0 .59.15.84.45l1.77 2.14a3.64 3.64 0 0 0 3.07 1.5c2.24 0 3.72-1.48 3.72-3.76 0-.98-.22-2.1-.6-3.36-.6-2-1.64-4.73-2.64-6.84-.84-1.76-1.27-2.56-3.34-3.03a34.8 34.8 0 0 0-7.5-.7c-3.13 0-5.7.28-7.53.7-2.07.47-2.5 1.27-3.34 3.03-1 2.11-2.04 4.83-2.63 6.84C.22 11.84 0 12.96 0 13.94c0 2.28 1.48 3.77 3.72 3.77Z"/>
+      </g>
+
+      <g id="book">
+        <path d="M0 16.51c0 .8.53 1.12 1.1 1.12.34 0 .62-.2.99-.42a6.67 6.67 0 0 1 3.76-1.17c1.4 0 2.8.52 3.9 1.58.43.39.74.51 1.1.51.35 0 .67-.12 1.1-.51a5.68 5.68 0 0 1 3.9-1.58 6.64 6.64 0 0 1 3.75 1.17c.37.22.65.42 1 .42.56 0 1.09-.32 1.09-1.12V3.26c0-.16-.01-.3-.12-.47C20.7 1.28 18.5 0 15.81 0c-2.13 0-3.97.85-4.96 2.05C9.86.85 8.01 0 5.89 0 3.19 0 .99 1.28.12 2.8c-.1.16-.12.3-.12.46Zm1.57-.83V3.48c.8-1.14 2.51-1.9 4.32-1.9 1.85 0 3.48.77 4.17 1.96v12.31c-1-.8-2.55-1.39-4.17-1.39-1.7 0-3.28.48-4.32 1.22Zm10.06.17V3.55c.7-1.2 2.33-1.98 4.18-1.98 1.8 0 3.52.77 4.3 1.92v12.2a7.61 7.61 0 0 0-8.48.16Z"/>
+      </g>
+
+      <g id="letter-m">
+        <path d="M19.92 9.96c0 5.44-4.51 9.96-9.96 9.96C4.52 19.92 0 15.4 0 9.96 0 4.51 4.51 0 9.95 0c5.45 0 9.97 4.51 9.97 9.96Zm-7.26-4.15L9.99 12.5h-.05L7.26 5.81a.98.98 0 0 0-.99-.65c-.57 0-.96.38-.96.93v7.72c0 .52.29.83.73.83.46 0 .74-.3.74-.83V8h.1l2.3 5.79c.16.36.39.53.77.53.37 0 .63-.17.77-.53l2.33-5.78h.08v5.79c0 .52.28.83.72.83.48 0 .75-.3.75-.83V6.09c0-.55-.4-.93-.95-.93a1 1 0 0 0-1 .65Z"/>
+      </g>
+    </defs>
+  </svg>  <main>
+    <h1>Games</h1>
+    <div class="two-column-layout">
+      <div class="two-column-layout__calendar">
+          <section class="calendar">
+            <header class="calendar-header">
+              <nav class="calendar-header__nav">
+                <span class="calendar-header__nav-item">
+                  <a href="january.html">
+                    <time datetime="2024-11">January</time>
+                  </a>
+                </span>
+                <span class="calendar-header__nav-item" aria-current="page">
+                  <time datetime="2024-12">February</time>
+                </span>
+                <span class="calendar-header__nav-item">
+                  <a href="march.html">
+                    <time datetime="2024-11">March</time>
+                  </a>
+                </span>
+              </nav>
+            </header>
+            <div class="calendar-dates">
+              <table class="calendar-dates__table">
+                <thead class="calendar-dates__days">
+                  <tr>
+                    <th class="calendar-dates__day"><abbr title="Monday" aria-label="Monday">Mon</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Tuesday" aria-label="Tuesday">Tue</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Wednesday" aria-label="Wednesday">Wed</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Thursday" aria-label="Thursday">Thur</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Friday" aria-label="Friday">Fri</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Saturday" aria-label="Saturday">Sat</abbr></th>
+                    <th class="calendar-dates__day"><abbr title="Sunday" aria-label="Sunday">Sun</abbr></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>29</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>30</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>31</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-1">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>1</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-2">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>2</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>3</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>4</time>
+                            </span>
+                          
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>5</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-6">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>6</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>7</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-8">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>8</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-9">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>9</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__mark--is-today">
+                              <time>10</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>11</time>
+                            </span>
+                          
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>12</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-13">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>13</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-14">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>14</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-15">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>15</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-16">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>16</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>17</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>18</time>
+                            </span>
+                          
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>19</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-20">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>20</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-21">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>21</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-22">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>22</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-23">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>23</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>24</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>25</time>
+                            </span>
+                          
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark">
+                              <time>26</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-27">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>27</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-28">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>28</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          <a href="#day-29">
+                            <span class="calendar-dates__mark calendar-dates__mark--has-games">
+                              <time>29</time>
+                            </span>
+                          </a>
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>1</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>2</time>
+                            </span>
+                          
+                        </td>
+                        <td class="calendar-dates__date">
+                          
+                            <span class="calendar-dates__mark calendar-dates__date--ignore">
+                              <time>3</time>
+                            </span>
+                          
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>      </div>
+      <div class="two-column-layout__entries">
+
+
+
+        <section class="month-game-entries">
+          <h2 class="month-game-entries__title" id="january">February</h2>
+
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-1">1st</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="132255a9-6aed-554b-88e4-e5c97544116b">
+                    <h4 class="video-game-card__title">Granblue Fantasy: Relink</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Cygames
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="5e59fd35-e334-5666-b46e-67365da4da2e">
+                    <h4 class="video-game-card__title">Jujutsu Kaisen: Cursed Clash</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Bandai Namco Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="e6089a9a-67c2-55c5-8c38-84d4a0ff0cd6">
+                    <h4 class="video-game-card__title">The Legend of Legacy HD Remastered</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           FuRyu
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="5658ab37-99cf-525d-8e1b-c7b1631c7d40">
+                    <h4 class="video-game-card__title">Moonbreaker</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="d95e3bbd-48dd-576a-9646-c89e3cf9574d">
+                    <h4 class="video-game-card__title">One Punch Man: World</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="iOS">iOS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Android">Droid</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-2">2nd</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="5e59fd35-e334-5666-b46e-67365da4da2e">
+                    <h4 class="video-game-card__title">Jujutsu Kaisen: Cursed Clash</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Bandai Namco Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="459aa50f-cb28-5d2a-bf30-940202f843d3">
+                    <h4 class="video-game-card__title">Persona 3 Reload</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Atlus
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="7f97f706-831f-5503-bbc6-8a155c8954d9">
+                    <h4 class="video-game-card__title">Suicide Squad: Kill the Justice League</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Warner Bros. Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f33debf5-7e3c-5cae-bfc7-0d8fcd9c4704">
+                    <h4 class="video-game-card__title">Vampire: The Masquerade - Justice</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-6">6th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="6973e6b7-9fbb-5c36-96b6-224878ad8d3b">
+                    <h4 class="video-game-card__title">Foamstars</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Square Enix
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-8">8th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="b6fa9a35-a45c-5aa4-b17a-da58bc901d48">
+                    <h4 class="video-game-card__title">Helldivers II</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Sony Interactive Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="bdc82303-53a9-5197-8f9d-9955bc2a11e9">
+                    <h4 class="video-game-card__title">Invector: Rhythm Galaxy</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Warner Music Group
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="6199a2a8-6d8a-5f04-a7ea-e80615e15e65">
+                    <h4 class="video-game-card__title">Touhou Danmaku Kagura: Phantasia Lost</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Unknown X
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-9">9th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="937dbd6a-5b6a-58b1-8007-2509cfea8283">
+                    <h4 class="video-game-card__title">Resident Evil 4 Gold Edition</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-13">13th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="8d54b408-a124-592a-91d2-cf562d0daf5e">
+                    <h4 class="video-game-card__title">Banishers: Ghosts of New Eden</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Focus Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f69f0f8a-5f4e-593e-95b7-c1a83769d5fd">
+                    <h4 class="video-game-card__title">Dragon Quest Builders</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Square Enix
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="35b0640d-113d-56da-8e17-89b50759de14">
+                    <h4 class="video-game-card__title">Islands of Insight</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Behaviour Interactive
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="17bd7c90-b3cd-5d78-9517-0e9b0e8e16dd">
+                    <h4 class="video-game-card__title">Ultros</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Hadoque
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="1069b764-12c5-55ca-9f6a-ecf3632f3fe2">
+                    <h4 class="video-game-card__title">Lysfanga: The Time Shift Warrior</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-14">14th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="02161df2-b0d1-5d3d-9233-9ab97d50a3f8">
+                    <h4 class="video-game-card__title">Arzette: The Jewel of Faramore</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Limited Run Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="a1126c1d-3a1d-518a-9fe2-36ebeedb4973">
+                    <h4 class="video-game-card__title">Biomutant</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           THQ Nordic
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="12d06051-74be-59f6-8afe-4b45b108fbf9">
+                    <h4 class="video-game-card__title">Solium Infernum</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           League of Geeks
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="dcfeb45f-9dea-500a-82eb-34a10226079f">
+                    <h4 class="video-game-card__title">Tomb Raider I–III Remastered</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Aspyr
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-15">15th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="648540ec-312f-5627-ac9e-c35deb18ae68">
+                    <h4 class="video-game-card__title">Gunvolt Records Cychronicle</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Inti Creates
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="43582f89-ccd3-57e0-88e6-d961b6d328b2">
+                    <h4 class="video-game-card__title">The Legend of Heroes: Trails Through Daybreak</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Nihon Falcom
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="ac437be7-8ec3-57a9-8e1e-d7874f947764">
+                    <h4 class="video-game-card__title">PlateUp!</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Yogscast Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="0f8309cb-53a3-5c2a-bccf-7809da730a11">
+                    <h4 class="video-game-card__title">Spirit Hunter: Death Mark II</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Aksys Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="b1f7299f-88f9-5cc5-a0b5-1d5610378c83">
+                    <h4 class="video-game-card__title">A Little to the Left</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-16">16th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="7ed5981e-51aa-5421-8676-8c725d71d4b7">
+                    <h4 class="video-game-card__title">The Legend of Heroes: Trails of Cold Steel III</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           NIS America
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="2d3573b0-3519-5620-8d04-3cabea62c04b">
+                    <h4 class="video-game-card__title">The Legend of Heroes: Trails of Cold Steel IV</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           NIS America
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="b5c9781c-2139-5161-85b0-9ad17428fcb4">
+                    <h4 class="video-game-card__title">Mario vs. Donkey Kong</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Nintendo
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="95ecdc73-9a0c-5df8-996b-dbe4874fda09">
+                    <h4 class="video-game-card__title">Recolit</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Image Labo, Yokaze
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f3e5a0d2-9270-5562-9daf-0ac0c1bc768e">
+                    <h4 class="video-game-card__title">Skull and Bones</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Google Stadia">GS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Ubisoft
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-20">20th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="c8690cfa-743f-5a13-9f04-13df6a0cef92">
+                    <h4 class="video-game-card__title">The Lost Legends of Redwall: The Scout Anthology</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Forthright Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="0c7d9256-5e4d-5042-a64c-36235349e002">
+                    <h4 class="video-game-card__title">irem Collection Volume 2</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           ININ Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="575666c4-1198-5424-b305-74cac8393c5a">
+                    <h4 class="video-game-card__title">Madison</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation VR 2">PSVR2</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="8e157b46-44a3-55cf-91ed-e4d818a00894">
+                    <h4 class="video-game-card__title">qomp2</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-21">21st</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="4b914073-31c3-5451-aa46-257287699af8">
+                    <h4 class="video-game-card__title">Bandle Tale: A League of Legends Story</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Riot Forge
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="a7c6def2-5cd6-54c1-962a-adfa41e9777e">
+                    <h4 class="video-game-card__title">Last Epoch</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Eleventh Hour Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="7d7ea0d8-562b-5429-8c1a-d180a37af45c">
+                    <h4 class="video-game-card__title">Slave Zero X</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Ziggurat Interactive
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="92407561-8e36-5cd3-bb68-26273a779200">
+                    <h4 class="video-game-card__title">Terminator: Dark Fate - Defiance</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Slitherine Ltd
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-22">22nd</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="5187a412-0d19-5f1c-a94f-ceb0ffc9a206">
+                    <h4 class="video-game-card__title">CorpoNation: The Sorting Process</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Playtonic Friends
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="40212812-ff4d-516e-bcbf-529e95f7b5dc">
+                    <h4 class="video-game-card__title">King Arthur: Knight&#39;s Tale</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           NeocoreGames
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="8b63cf77-6d3c-59b7-ba8f-d5aa2ef1a8aa">
+                    <h4 class="video-game-card__title">Pacific Drive</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Kepler Interactive
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="22e11cdc-38d1-5900-9d14-aa345c24000e">
+                    <h4 class="video-game-card__title">Retro Game Challenge 1 + 2 Replay</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Bandai Namco Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="92030626-78a0-5893-9b5d-8fa87e3c929b">
+                    <h4 class="video-game-card__title">Shin chan: Shiro of Coal Town</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Neos
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="12250a3c-2863-58e4-8d2d-f69b28489988">
+                    <h4 class="video-game-card__title">Sons of the Forest</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Newnight
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="e473622b-8cd7-5937-93fe-5750ad9886f3">
+                    <h4 class="video-game-card__title">Yohane the Parhelion: Numazu in the Mirage</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           BeXide
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-23">23rd</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f6d7811e-c9a7-5542-a1f3-6c00384f3680">
+                    <h4 class="video-game-card__title">Promenade</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Red Art Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-27">27th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="377e2e2f-ddf7-540d-869d-a57df151445c">
+                    <h4 class="video-game-card__title">Shiren the Wanderer: The Mystery Dungeon of Serpentcoil Island</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Spike Chunsoft
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="4d75ed24-7477-5708-a294-ee640a632bbe">
+                    <h4 class="video-game-card__title">Sympathy Kiss</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Idea Factory International
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="949391a2-2963-533b-9d6a-468ba789c348">
+                    <h4 class="video-game-card__title">Wrath: Aeon of Ruin</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           3D Realms, Fulqrum Publishing
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-28">28th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="67f987c5-1a91-5edb-aac7-32bc47fb9d71">
+                    <h4 class="video-game-card__title">Spiritfall</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Macintosh">Mac</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Gentle Giant
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="830edb0a-2a0f-53cb-81b9-9da017f3de9c">
+                    <h4 class="video-game-card__title">Brothers: A Tale of Two Sons Remake</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           505 Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f8b2c6ca-7787-5b62-8ca1-101efb2407e4">
+                    <h4 class="video-game-card__title">Star Wars: Dark Forces Remaster</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox One">XBO</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Nightdive Studios
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+            <section class="day-game-entry">
+              <h3 class="day-game-entry__title" id="day-29">29th</h3>
+              <ul class="day-game-entry__list">
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="fdc7ae13-45c4-5d1b-aff8-69ddc6a7d560">
+                    <h4 class="video-game-card__title">Bar Bella Abyss</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 4">PS4</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Nippon Ichi Software
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="5452afd1-68f6-56d0-aa4b-24824e14ca41">
+                    <h4 class="video-game-card__title">Final Fantasy VII Rebirth</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Square Enix
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="f4e334af-cd17-5674-8a6e-b8f5cf802c9e">
+                    <h4 class="video-game-card__title">Goblin Slayer Another Adventurer: Nightmare Feast</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Bushiroad Games
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="c810e342-ca82-58ba-9f2e-6f7cdf5246dd">
+                    <h4 class="video-game-card__title">Of the Red, the Light, and the Ayakashi Tsuzuri</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Dramatic Create
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="3c96f456-6e9f-5dc0-b128-66be2e4629c4">
+                    <h4 class="video-game-card__title">Riviera: The Promised Land - Remaster</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Nintendo Switch">NS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Sting Entertainment
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+                <li class="day-game-entry__list-item">
+                  <div class="video-game-card" id="69b0d0a5-ae3f-505c-b4c2-9eb0b07e2b4d">
+                    <h4 class="video-game-card__title">Welcome to ParadiZe</h4>
+                    <footer class="video-game-card__footer">
+                      <div class="platform-list">
+                        <div class="platform-list__icon">
+                          <svg viewBox="0 0 29 18" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#controller"/>
+                          </svg>
+                        </div>
+                        <ul class="platform-list__list">
+                            <li class="platform-list__item">
+                              <abbr title="Microsoft Windows">Win</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Playstation 5">PS5</abbr>
+                            </li>
+                            <li class="platform-list__item">
+                              <abbr title="Xbox Series X&#x2F;S">XBS</abbr>
+                            </li>
+                        </ul>
+                       </div>
+                       <div class="publisher">
+                         <span class="publisher__icon">
+                            <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg">
+                              <use href="#book"/>
+                            </svg>
+                         </span>
+                         <span class="published__name">
+                           Nacon
+                         </span>
+                       </div>
+                     </footer>
+                   </div>                </li>
+              </ul>
+            </section>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
