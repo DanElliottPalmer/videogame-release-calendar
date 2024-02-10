@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "fetch": "deno run --allow-net --allow-write scripts/fetch.ts ",
+    "render": "deno run --allow-read --allow-write --watch scripts/render.ts",
+    "render:watch": "deno run --allow-read --allow-write --watch scripts/render.ts --watch"
+  }
+}
