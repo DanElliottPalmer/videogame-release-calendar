@@ -13,7 +13,7 @@ import { MonthTemplateData } from "../src/templating/MonthTemplateData.ts";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 const TEMPLATE_DIR = resolve(__dirname, "../templates");
-const OUTPUT_DIR = resolve(__dirname, "../output");
+const OUTPUT_DIR = resolve(__dirname, "../docs");
 
 const CALENDAR_JSON_ALL_MONTHS: CalendarMonthJson = await Deno.readTextFile(
   resolve(OUTPUT_DIR, "calendar-all-months.json"),

@@ -26,22 +26,9 @@ jobs:
         run: |
           deno task render
 
-#       - name: Setup Git
-#         run: |
-#           git config user.name "danelliottpalmer"
-#           git config user.email "danelliottpalmer@gmail.com"
-
-#       - name: Install and Build
-#         run: |
-#           npm ci
-#           npm run build
-
-#       - name: Create Index.html
-#         run: |
-#           node lib/index.js
-
-#       - name: Commit Files
-#         run: |
-#           git add index.html games.ics
-#           git commit -m "feat(files): update static index and games calendar"
-#           git push origin main
+      - name: Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs'
+          default_author: github_actions
+          message: 'Update JSON and pages'

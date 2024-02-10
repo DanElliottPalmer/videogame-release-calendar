@@ -6,7 +6,7 @@ import { VIDEO_GAME_MANAGER } from "../src/game/index.ts";
 import { Calendar } from "../src/calendar/Calendar.ts";
 
 const __dirname = new URL(".", import.meta.url).pathname;
-const OUTPUT_DIR = resolve(__dirname, "../output");
+const OUTPUT_DIR = resolve(__dirname, "../docs");
 
 const FETCHERS = [
   wikipediaFetcher,
