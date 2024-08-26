@@ -1,6 +1,5 @@
 import { resolve } from "https://deno.land/std@0.209.0/path/mod.ts";
 import { fetcher as wikipediaFetcher } from "../src/fetchers/WikipediaFetcher.ts";
-import { fetcher as gameInformerFetcher } from "../src/fetchers/GameInformerFetcher.ts";
 import { fetcher as gamesRadarFetcher } from "../src/fetchers/GamesRadarFetcher.tsx";
 import { VIDEO_GAME_MANAGER } from "../src/game/index.ts";
 import { Calendar } from "../src/calendar/Calendar.ts";
@@ -10,8 +9,8 @@ const OUTPUT_DIR = resolve(__dirname, "../docs");
 
 const FETCHERS = [
   wikipediaFetcher,
-  gameInformerFetcher,
-  gamesRadarFetcher,
+  // todo update this at some point
+  // gamesRadarFetcher,
 ];
 const CALENDAR = new Calendar();
 
