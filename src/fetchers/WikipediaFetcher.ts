@@ -32,7 +32,7 @@ class WikipediaFetcher extends PageFetcher {
     const tables: Array<Element> = [];
 
     let node: Element | null | undefined = doc.querySelector(
-      "h3 #January–March",
+      "h3#January_–_March",
     )?.parentElement;
     if (isDefined(node)) {
       while (true) {
